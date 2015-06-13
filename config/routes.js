@@ -44,9 +44,10 @@ module.exports.routes = {
 
   'GET /dashboard': 'AppController.dashboard',
   'GET /project': 'ProjectController.show',
-  'GET /coachs': 'AppController.dashboard',
+  'GET /projects': 'ProjectController.projects',
 
-  'PUT /project/:id': 'ProjectController.update'
+  'PUT /project/:id': 'ProjectController.update',
+  'POST /user/demande': 'UserController.demande'
 
 
   /***************************************************************************

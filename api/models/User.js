@@ -28,6 +28,10 @@ module.exports = {
     },
     rank: {
       type: 'STRING'
+    },
+    demande: {
+      collection: 'project',
+      via: 'coachs'
     }
   },
 

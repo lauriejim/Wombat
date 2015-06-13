@@ -17,6 +17,10 @@ module.exports = {
     },
     manager: {
       model: "user"
+    },
+    coachs: {
+      collection: 'user',
+      via: 'demande'
     }
   }
 };

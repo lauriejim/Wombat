@@ -1,0 +1,85 @@
+<!-- BEGIN PAGE CONTAINER-->
+<div class="page-content">
+  <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+  <div id="portlet-config" class="modal hide">
+    <div class="modal-header">
+      <button data-dismiss="modal" class="close" type="button"></button>
+      <h3>Widget Settings</h3>
+    </div>
+    <div class="modal-body"> Widget settings form goes here </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="content">
+  <div class="page-title">
+    <h3>Start-up</h3>
+  </div>
+             <div class="row">
+        <% for(var i=0; i<projects.length; i++) {%>
+
+        <!-- BEGIN BLOG POST WITH IMAGE -->
+               <div class="col-md-4">
+          <div class="widget-item narrow-margin">
+                  <div class="tiles purple " style="max-height:345px">
+                    <div class="tiles-body">
+
+                      <h3 class="text-white m-t-50 m-b-30 m-r-20">Project name</h3>
+                      <div class="overlayer bottom-right fullwidth">
+                        <div class="overlayer-wrapper">
+                        </div>
+                      </div>
+                      <br>
+                    </div>
+                  </div>
+                  <div class="tiles white ">
+                    <div class="tiles-body">
+                      <div class="row">
+                        <div class="user-comment-wrapper pull-left">
+                          <div class="profile-wrapper">
+              <img src="images/profiles/d2x.jpg" alt="" data-src="images/profiles/d.jpg" data-src-retina="images/profiles/d2x.jpg" width="35" height="35">
+              </div>
+                          <div class="comment">
+                            <div class="user-name text-black bold"><%= projects[i].manager.firstname %> <span class="semi-bold"><%= projects[i].manager.lastname %></span> </div>
+                            <div class="preview-wrapper">@ <%= projects[i].manager.firstname %><%= projects[i].manager.lastname %> </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="p-l-15 p-t-10 p-r-20">
+                          <div class="post p-t-10 p-b-10">
+                            <p class="p-b-10"><%= projects[i].pitch %></p>
+                            <% for(var j=0; j<projects[i].needs.length; j++) {%>
+                            <a href="#" class="hashtags m-b-5"> #<%= projects[i].needs[j].type %> </a>
+                            <% } %>
+                            </div>
+                            <button type="button" class="btn btn-info btn-cons" data-id="<%= projects[i].id %>">Help them</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+        <!-- BEGIN BLOG POST WITH IMAGE -->
+        <% } %>
+      </div>
+  </div>
+</div>
+<!-- END PAGE CONTAINER-->
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.btn').click(function(e) {
+      e.preventDefault();
+      var project = $(this).attr('data-id');
+
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: "/user/demande",
+        headers: {"X-HTTP-Method-Override": "POST"},
+        data: {
+          project: project
+        }
+      });
+    });
+  });
+</script>

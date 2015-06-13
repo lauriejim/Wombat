@@ -19,6 +19,18 @@ module.exports = {
       });
   },
 
+  projects: function(req, res) {
+    Project.find()
+      .populate('needs')
+      .populate('manager')
+      .exec(function(err, projects) {
+        console.log(projects);
+        res.view('projects', {
+          projects: projects
+        });
+      });
+  },
+
   update: function(req, res) {
     scope = req.params.all();
     sails.log(scope);
