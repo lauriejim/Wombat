@@ -69,6 +69,22 @@ $(document).ready(function() {
           e.preventDefault();
           $(this).tab('show');
         });
+
+        if (!_.findWhere(needs, {type: need})) {
+          $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: "/need",
+            headers: {"X-HTTP-Method-Override": "POST"},
+            data: {
+              content: '',
+              type: need,
+              project: <%- project.id %>
+            }
+          }).done(function(data) {
+            needs.push(data);
+          });
+        }
       }
       all.splice(all.indexOf(need), 1);
     });
@@ -78,6 +94,13 @@ $(document).ready(function() {
       tabs.splice(tabs.indexOf(need), 1);
       $('#tab_' + need).remove();
       $('#tab_' + need + '_link').remove();
+
+      $.ajax({
+        type: 'DELETE',
+        dataType: 'json',
+        url: "/need/" + _.findWhere(needs, {type: need}).id,
+        headers: {"X-HTTP-Method-Override": "DELETE"},
+      });
     }
   }
 
@@ -92,22 +115,26 @@ $(document).ready(function() {
   var selected = [];
 
   needs.forEach(function(need) {
-    selected.push(need.need);
-    newNeeds[need.need] = {need: need.need, content: need.content};
+    selected.push(need.type);
+    newNeeds[need.type] = {need: need.type, content: need.content};
   });
-  newNeeds;
 
   $("#multi").val(selected).select2();
   needsFab();
   tabs = selected;
 
   $('#update').click(function() {
-    var needs = [];
     tabs.forEach(function(need) {
       need_content = $('#tab_' + need + '_form').val()
-      needs.push({
-        need: need,
-        content: need_content
+      var updateNeed = _.findWhere(needs, {type: need});
+      updateNeed.content = need_content;
+
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: "/need/" + updateNeed.id,
+        headers: {"X-HTTP-Method-Override": "PUT"},
+        data: updateNeed
       });
     });
 
@@ -117,7 +144,6 @@ $(document).ready(function() {
       url: "/project/<%- project.id %>",
       headers: {"X-HTTP-Method-Override": "PUT"},
       data: {
-        needs: needs,
         pitch: $('#pitch').val()
       }
     });

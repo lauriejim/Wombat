@@ -36,18 +36,31 @@ module.exports = {
       firstname: req.param('firstname'),
       lastname: req.param('lastname'),
       email: req.param('email'),
-      password: req.param('password')
+      password: req.param('password'),
+      rank: 'manager'
     }
 
     User.create(user)
       .exec(function(err, user) {
         var project = {
           pitch: req.param('pitch'),
-          needs: req.param('needs'),
           manager: user.id
         };
+
         Project.create(project)
           .exec(function(err, project) {
+            needs = req.param('needs');
+
+            needs.forEach(function(need) {
+
+              Need.create({
+                type: need.need,
+                content: need.content,
+                project: project.id
+              }).exec(function() {
+
+              });
+            });
             res.send(200);
           });
       })

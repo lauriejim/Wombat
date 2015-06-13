@@ -19,6 +19,15 @@ module.exports = {
     },
     password: {
       type: 'STRING'
+    },
+    entreprise: {
+      type: 'STRING'
+    },
+    expertise: {
+      type: 'ARRAY'
+    },
+    rank: {
+      type: 'STRING'
     }
   },
 
@@ -31,5 +40,5 @@ module.exports = {
       .catch(function(err) {
         cb(err);
       });
-  },
+  }
 };

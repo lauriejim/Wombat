@@ -10,6 +10,7 @@ module.exports = {
     Project.find({
       manager: req.session.user.id
     })
+      .populate('needs')
       .exec(function(err, project) {
         console.log(project);
         res.view('project', {
