@@ -1,0 +1,31 @@
+/**
+ * ProjectController
+ *
+ * @description :: Server-side logic for managing projects
+ * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
+ */
+
+module.exports = {
+  show: function(req, res) {
+    Project.find({
+      manager: req.session.user.id
+    })
+      .exec(function(err, project) {
+        console.log(project);
+        res.view('project', {
+          project: project[0]
+        });
+      });
+  },
+
+  update: function(req, res) {
+    scope = req.params.all();
+    sails.log(scope);
+
+    Project.update(req.param('id'), scope)
+      .exec(function(err, updated) {
+        sails.log(err, updated);
+        res.redirect('/project');
+      });
+  }
+};

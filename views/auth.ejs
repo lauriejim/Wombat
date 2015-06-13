@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta charset="utf-8" />
+<title>Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta content="" name="description" />
+<meta content="" name="author" />
+<!-- BEGIN CORE CSS FRAMEWORK -->
+<link href="plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="plugins/boostrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="plugins/boostrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+<link href="plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="styles/animate.min.css" rel="stylesheet" type="text/css"/>
+<!-- END CORE CSS FRAMEWORK -->
+<!-- BEGIN CSS TEMPLATE -->
+<link href="styles/style.css" rel="stylesheet" type="text/css"/>
+<link href="styles/responsive.css" rel="stylesheet" type="text/css"/>
+<link href="styles/custom-icon-set.css" rel="stylesheet" type="text/css"/>
+<!-- END CSS TEMPLATE -->
+<link href="plugins/bootstrap-select2/select2.css" rel="stylesheet" type="text/css" media="screen"/>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="error-body no-top lazy"  data-original="images/work.jpg"  style="background-image: url('images/work.jpg')">
+<div class="container">
+  <div class="row login-container animated fadeInUp">
+        <div class="col-md-7 col-md-offset-2 tiles white no-padding">
+     <div class="p-t-30 p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10">
+          <h2 class="normal">Bienvenu sur ...</h2>
+          <p>Use Facebook, Twitter or your email to sign in.<br></p>
+          <p class="p-b-20">Sign up Now! for webarch accounts, it's free and always will be..</p>
+      <button type="button" class="btn btn-info btn-cons" id="register_toggle">Try it now !</button> or&nbsp;&nbsp;<button type="button" class="btn btn-primary btn-cons" id="login_toggle">Login</button>
+        </div>
+    <div class="tiles grey p-t-20 p-b-20 text-black">
+      <form id="frm_login" class="animated fadeIn" method="POST" action="/login" style="display:none">
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-6 col-sm-6 ">
+            <input name="email" id="email" type="text"  class="form-control" placeholder="Email">
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <input name="password" id="password" type="password"  class="form-control" placeholder="Password">
+          </div>
+          <div class="col-md-12 ">
+            <button type="submit" class="btn btn-primary btn-cons">Go !</button>
+          </div>
+        </div>
+      </form>
+      <form id="frm_pitch" class="animated fadeIn">
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-12 ">
+            <textarea name="pitch" id="pitch" rows="10" type="text" class="form-control" placeholder="Write your pitch"></textarea>
+          </div>
+        </div>
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-12 ">
+            <button type="button" class="btn btn-info btn-cons" id="start">Start</button>
+          </div>
+        </div>
+      </form>
+      <form id="frm_besoins" class="animated fadeIn" style="display:none">
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-12">
+            <p>Dans quelle domaine avez-vous besoin d'aide ?</p>
+            <br>
+            <select id="multi" style="width:100%" multiple>
+              <option value="UI">UI</option>
+              <option value="UX">UX</option>
+              <option value="Juridique">Juridique</option>
+              <option value="Communication">Communication</option>
+              <option value="Business">Business</option>
+            </select>
+            <br><br>
+            <ul class="nav nav-tabs" id="tab-01">
+            </ul>
+            <div class="tab-content" id="tab-01-content">
+
+            </div>
+          </div>
+        </div>
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-12 ">
+            <button type="button" class="btn btn-info btn-cons" id="account">Create your account</button>
+          </div>
+        </div>
+      </form>
+      <form id="frm_register" class="animated fadeIn" style="display:none">
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-6 col-sm-6">
+            <input name="firstname" id="firstname" type="text"  class="form-control" placeholder="First Name">
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <input name="lastname" id="lastname" type="text" class="form-control" placeholder="Last Name">
+          </div>
+        </div>
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-12 ">
+            <input name="reg_email" id="reg_email" type="text" class="form-control" placeholder="Email">
+          </div>
+        </div>
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-12">
+            <input name="reg_password" id="reg_password" type="password"  class="form-control" placeholder="Password">
+          </div>
+        </div>
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-12 ">
+            <button type="button" class="btn btn-info btn-cons" id="finish">Finish</button>
+          </div>
+        </div>
+      </form>
+    </div>
+      </div>
+  </div>
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN CORE JS FRAMEWORK-->
+<script src="plugins/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="plugins/pace/pace.min.js" type="text/javascript"></script>
+<script src="plugins/jquery-lazyload/jquery.lazyload.min.js" type="text/javascript"></script>
+<script src="plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
+<script src="js/login_v2.js" type="text/javascript"></script>
+<!-- BEGIN CORE TEMPLATE JS -->
+<!-- END CORE TEMPLATE JS -->
+</body>
+
+</html>

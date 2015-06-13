@@ -1,0 +1,129 @@
+<!-- BEGIN PAGE CONTAINER-->
+<div class="page-content">
+  <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+  <div id="portlet-config" class="modal hide">
+    <div class="modal-header">
+      <button data-dismiss="modal" class="close" type="button"></button>
+      <h3>Widget Settings</h3>
+    </div>
+    <div class="modal-body"> Widget settings form goes here </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="content">
+  <div class="page-title">
+    <h3>Project</h3>
+     <form id="frm_pitch" class="animated fadeIn">
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-12 ">
+            <textarea name="pitch" id="pitch" rows="10" type="text" class="form-control" placeholder="Write your pitch"><%- project.pitch %></textarea>
+          </div>
+        </div>
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-12">
+            <p>Dans quelle domaine avez-vous besoin d'aide ?</p>
+            <br>
+            <select id="multi" style="width:100%" multiple>
+              <option value="UI">UI</option>
+              <option value="UX">UX</option>
+              <option value="Juridique">Juridique</option>
+              <option value="Communication">Communication</option>
+              <option value="Business">Business</option>
+            </select>
+            <br><br>
+            <ul class="nav nav-tabs" id="tab-01">
+            </ul>
+            <div class="tab-content" id="tab-01-content">
+
+            </div>
+          </div>
+        </div>
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-12 ">
+            <button type="button" class="btn btn-info btn-cons" id="update">Update project</button>
+          </div>
+        </div>
+      </form>
+  </div>
+  </div>
+</div>
+<!-- END PAGE CONTAINER-->
+<script type="text/javascript">
+$(document).ready(function() {
+  var tabs = [];
+
+  function needsFab() {
+    var all = JSON.parse(JSON.stringify(tabs));
+    $("select option:selected").each(function() {
+      var need = $(this).text();
+      if (tabs.indexOf(need) === -1) {
+        tabs.push(need);
+        if (!newNeeds[need]) newNeeds[need] = {need: need, content: ''};
+        if (tabs.length === 1) {
+          $('#tab-01').append('<li class="active" id="tab_' + need + '_link"><a href="#tab_' + need + '">' + need + '</a></li>');
+          $('#tab-01-content').append('<div class="tab-pane active" id="tab_' + need + '"><div class="row column-seperation"><div class="col-md-12"><textarea name="tab_' + need + '_form" id="tab_' + need + '_form" rows="10" type="text" class="form-control" placeholder="Write your ' + need + ' needs">' + newNeeds[need].content + '</textarea></div></div></div>');
+        } else {
+          $('#tab-01').append('<li id="tab_' + need + '_link"><a href="#tab_' + need + '">' + need + '</a></li>');
+          $('#tab-01-content').append('<div class="tab-pane" id="tab_' + need + '"><div class="row column-seperation"><div class="col-md-12"><textarea name="tab_' + need + '_form" id="tab_' + need + '_form" rows="10" type="text" class="form-control" placeholder="Write your ' + need + ' needs">' + newNeeds[need].content + '</textarea></div></div></div>');
+        }
+        $('#tab-01 a').click(function(e) {
+          e.preventDefault();
+          $(this).tab('show');
+        });
+      }
+      all.splice(all.indexOf(need), 1);
+    });
+
+    if (all.length !== 0) {
+      var need = all[0];
+      tabs.splice(tabs.indexOf(need), 1);
+      $('#tab_' + need).remove();
+      $('#tab_' + need + '_link').remove();
+    }
+  }
+
+  $('#multi').change(function() {
+    needsFab();
+  });
+
+  $("#multi").select2();
+
+  var needs = JSON.parse('<%-JSON.stringify(project.needs)%>');
+  var newNeeds = {};
+  var selected = [];
+
+  needs.forEach(function(need) {
+    selected.push(need.need);
+    newNeeds[need.need] = {need: need.need, content: need.content};
+  });
+  newNeeds;
+
+  $("#multi").val(selected).select2();
+  needsFab();
+  tabs = selected;
+
+  $('#update').click(function() {
+    var needs = [];
+    tabs.forEach(function(need) {
+      need_content = $('#tab_' + need + '_form').val()
+      needs.push({
+        need: need,
+        content: need_content
+      });
+    });
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      url: "/project/<%- project.id %>",
+      headers: {"X-HTTP-Method-Override": "PUT"},
+      data: {
+        needs: needs,
+        pitch: $('#pitch').val()
+      }
+    });
+
+  });
+
+
+});
+</script>

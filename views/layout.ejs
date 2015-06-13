@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard</title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <!--
+        Stylesheets and Preprocessors
+        ==============================
+
+        You can always bring in CSS files manually with `<link>` tags, or asynchronously
+        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
+        of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+        By default, stylesheets from your `assets/styles` folder are included
+        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
+        are supported. In production, your styles will be minified and concatenated into
+        a single file.
+
+        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Change the order of your CSS files
+            + Import stylesheets from other directories
+            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
+    -->
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/plugins/pace/pace-theme-flash.css">
+    <link rel="stylesheet" href="/plugins/jquery-slider/css/jquery.sidr.light.css">
+    <link rel="stylesheet" href="/plugins/boostrapv3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/plugins/boostrapv3/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/styles/animate.min.css">
+    <link rel="stylesheet" href="/plugins/bootstrap-select2/select2.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/responsive.css">
+    <link rel="stylesheet" href="/styles/custom-icon-set.css">
+    <!--STYLES END-->
+
+    <!--SCRIPTS-->
+    <script src="/plugins/jquery-1.8.3.min.js"></script>
+    <script src="/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/plugins/breakpoints.js"></script>
+    <script src="/plugins/jquery-unveil/jquery.unveil.min.js"></script>
+    <script src="/plugins/jquery-slider/jquery.sidr.min.js"></script>
+    <script src="/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/plugins/pace/pace.min.js"></script>
+    <script src="/plugins/jquery-numberAnimate/jquery.animateNumbers.js"></script>
+    <script src="/plugins/jquery.cookie.js"></script>
+    <script src="/plugins/bootstrap-select2/select2.min.js"></script>
+    <script src="/js/core.js"></script>
+    <script src="/js/demo.js"></script>
+    <!--SCRIPTS END-->
+
+  </head>
+
+  <!-- BEGIN BODY -->
+  <body class="">
+    <!-- BEGIN HEADER -->
+      <% include partials/header %>
+    <!-- END HEADER -->
+
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container row-fluid">
+      <!-- BEGIN SIDEBAR -->
+        <% include partials/sidebar %>
+      <!-- END SIDEBAR -->
+
+      <!-- BEGIN PAGE CONTAINER-->
+        <%- body %>
+      <!-- END PAGE CONTAINER-->
+
+     </div>
+    <!-- END CONTAINER -->
+  </body>
+</html>
