@@ -77,6 +77,17 @@ module.exports = {
       });
   },
 
+  demandeDelete: function(req, res) {
+    sails.controllers.user.get({
+      id: req.session.user.id
+    })
+      .then(function(data) {
+        data.demande.remove(req.param('project'));
+        data.save();
+        res.send(200);
+      });
+  },
+
   get: function(scope) {
     var deferred = Promise.defer();
     if (!scope) {

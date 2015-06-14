@@ -23,6 +23,7 @@ module.exports = {
     Project.find()
       .populate('needs')
       .populate('manager')
+      .populate('coachs')
       .exec(function(err, projects) {
         console.log(projects);
         res.view('projects', {

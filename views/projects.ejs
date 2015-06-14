@@ -51,7 +51,10 @@
                             <a href="#" class="hashtags m-b-5"> #<%= projects[i].needs[j].type %> </a>
                             <% } %>
                             </div>
-                            <button type="button" class="btn btn-info btn-cons" data-id="<%= projects[i].id %>">Help them</button>
+                            <% var help = false; for(var k=0; k<projects[i].coachs.length; k++) {
+                              if (projects[i].coachs[k].id === req.session.user.id) help = true;
+                            } %>
+                            <button type="button" class="btn <% if (help) { %>btn-success<% } else { %>btn-info<% } %> btn-cons" data-id="<%= projects[i].id %>"><% if (help) { %>Thx to help this team<% } else { %>Help this team<% } %></button>
                         </div>
                       </div>
                     </div>
@@ -70,16 +73,34 @@
     $('.btn').click(function(e) {
       e.preventDefault();
       var project = $(this).attr('data-id');
+      $(this).toggleClass("btn-info");
+      $(this).toggleClass("btn-success");
 
-      $.ajax({
-        type: 'POST',
-        dataType: 'json',
-        url: "/user/demande",
-        headers: {"X-HTTP-Method-Override": "POST"},
-        data: {
-          project: project
-        }
-      });
+      if ($(this).html() === "Help this team") {
+        $(this).html("Thx to help this team");
+
+        $.ajax({
+          type: 'POST',
+          dataType: 'json',
+          url: "/user/demande",
+          headers: {"X-HTTP-Method-Override": "POST"},
+          data: {
+            project: project
+          }
+        });
+      } else {
+        $(this).html("Help this team");
+
+        $.ajax({
+          type: 'POST',
+          dataType: 'json',
+          url: "/user/demande/delete",
+          headers: {"X-HTTP-Method-Override": "POST"},
+          data: {
+            project: project
+          }
+        });
+      }
     });
   });
 </script>

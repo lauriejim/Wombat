@@ -47,7 +47,8 @@ module.exports.routes = {
   'GET /projects': 'ProjectController.projects',
 
   'PUT /project/:id': 'ProjectController.update',
-  'POST /user/demande': 'UserController.demande'
+  'POST /user/demande': 'UserController.demande',
+  'POST /user/demande/delete': 'UserController.demandeDelete'
 
 
   /***************************************************************************
