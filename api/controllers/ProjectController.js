@@ -23,11 +23,27 @@ module.exports = {
     Project.find()
       .populate('needs')
       .populate('manager')
+      .populate('demande')
       .populate('coachs')
       .exec(function(err, projects) {
         console.log(projects);
         res.view('projects', {
           projects: projects
+        });
+      });
+  },
+
+  coachs: function(req, res) {
+    Project.find({
+      manager: req.session.user.id
+    })
+      .populate('needs')
+      .populate('demande')
+      .populate('coachs')
+      .exec(function(err, project) {
+        console.log(project);
+        res.view('coachs', {
+          project: project[0]
         });
       });
   },

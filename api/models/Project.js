@@ -18,9 +18,13 @@ module.exports = {
     manager: {
       model: "user"
     },
-    coachs: {
+    demande: {
       collection: 'user',
       via: 'demande'
+    },
+    coachs: {
+      collection: 'user',
+      via: 'projects'
     }
   }
 };

@@ -13,11 +13,17 @@
   <div class="page-title">
     <h3>Start-up</h3>
   </div>
-             <div class="row">
+      <div class="row">
         <% for(var i=0; i<projects.length; i++) {%>
 
+        <% var coach = false; for(var l=0; l<projects[i].coachs.length; l++) {
+          if (projects[i].coachs[l].id === req.session.user.id) coach = true;
+        }
+
+        if (!coach) {%>
+
         <!-- BEGIN BLOG POST WITH IMAGE -->
-               <div class="col-md-4">
+        <div class="col-md-4">
           <div class="widget-item narrow-margin">
                   <div class="tiles purple " style="max-height:345px">
                     <div class="tiles-body">
@@ -51,8 +57,8 @@
                             <a href="#" class="hashtags m-b-5"> #<%= projects[i].needs[j].type %> </a>
                             <% } %>
                             </div>
-                            <% var help = false; for(var k=0; k<projects[i].coachs.length; k++) {
-                              if (projects[i].coachs[k].id === req.session.user.id) help = true;
+                            <% var help = false; for(var k=0; k<projects[i].demande.length; k++) {
+                              if (projects[i].demande[k].id === req.session.user.id) help = true;
                             } %>
                             <button type="button" class="btn <% if (help) { %>btn-success<% } else { %>btn-info<% } %> btn-cons" data-id="<%= projects[i].id %>"><% if (help) { %>Thx to help this team<% } else { %>Help this team<% } %></button>
                         </div>
@@ -62,6 +68,7 @@
                 </div>
                 </div>
         <!-- BEGIN BLOG POST WITH IMAGE -->
+          <%}%>
         <% } %>
       </div>
   </div>

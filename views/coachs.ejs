@@ -1,0 +1,107 @@
+<!-- BEGIN PAGE CONTAINER-->
+<div class="page-content">
+  <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+  <div id="portlet-config" class="modal hide">
+    <div class="modal-header">
+      <button data-dismiss="modal" class="close" type="button"></button>
+      <h3>Widget Settings</h3>
+    </div>
+    <div class="modal-body"> Widget settings form goes here </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="content">
+  <div class="page-title">
+    <h3>Vos mentors.</h3>
+  </div>
+      <div class="row">
+        <% for(var i=0; i<project.coachs.length; i++) {%>
+
+        <!-- BEGIN BLOG POST WITH IMAGE -->
+               <div class="col-md-4">
+          <div class="widget-item narrow-margin">
+                  <div class="tiles white ">
+                    <div class="tiles-body">
+                      <div class="row">
+                        <div class="user-comment-wrapper pull-left">
+                          <div class="profile-wrapper">
+              <img src="images/profiles/d2x.jpg" alt="" data-src="images/profiles/d.jpg" data-src-retina="images/profiles/d2x.jpg" width="35" height="35">
+              </div>
+                          <div class="comment">
+                            <div class="user-name text-black bold"><%= project.coachs[i].firstname %> <span class="semi-bold"><%= project.coachs[i].lastname %></span> </div>
+                            <div class="preview-wrapper">@ <%= project.coachs[i].firstname %><%= project.coachs[i].lastname %> </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="p-l-15 p-t-10 p-r-20">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+        <!-- BEGIN BLOG POST WITH IMAGE -->
+        <% } %>
+      </div>
+  <div class="page-title">
+    <h3>Ils vous proposent leur aide.</h3>
+  </div>
+             <div class="row">
+        <% for(var i=0; i<project.demande.length; i++) {%>
+
+        <!-- BEGIN BLOG POST WITH IMAGE -->
+               <div class="col-md-4">
+          <div class="widget-item narrow-margin">
+                  <div class="tiles white ">
+                    <div class="tiles-body">
+                      <div class="row">
+                        <div class="user-comment-wrapper pull-left">
+                          <div class="profile-wrapper">
+              <img src="images/profiles/d2x.jpg" alt="" data-src="images/profiles/d.jpg" data-src-retina="images/profiles/d2x.jpg" width="35" height="35">
+              </div>
+                          <div class="comment">
+                            <div class="user-name text-black bold"><%= project.demande[i].firstname %> <span class="semi-bold"><%= project.demande[i].lastname %></span> </div>
+                            <div class="preview-wrapper">@ <%= project.demande[i].firstname %><%= project.demande[i].lastname %> </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="p-l-15 p-t-10 p-r-20">
+                            <button type="button" class="btn btn-success btn-cons" data-id="<%= project.id %>" data-coach="<%= project.demande[i].id %>">Valide</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+        <!-- BEGIN BLOG POST WITH IMAGE -->
+        <% } %>
+      </div>
+  </div>
+</div>
+<!-- END PAGE CONTAINER-->
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.btn').click(function(e) {
+      e.preventDefault();
+      var project = $(this).attr('data-id');
+      var coach = $(this).attr('data-coach');
+
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: "/user/coach",
+        headers: {"X-HTTP-Method-Override": "POST"},
+        data: {
+          project: project,
+          coach: coach
+        }
+      })
+      .done(function(data) {
+        window.location.reload();
+      });
+
+    });
+  });
+</script>

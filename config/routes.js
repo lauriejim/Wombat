@@ -26,7 +26,7 @@ module.exports.routes = {
    *                                                                          *
    * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
    * etc. depending on your default view engine) your home page.              *
-   *                                                                          *
+   * *
    * (Alternatively, remove this and add an `index.html` file in your         *
    * `assets` directory)                                                      *
    *                                                                          *
@@ -44,10 +44,12 @@ module.exports.routes = {
 
   'GET /dashboard': 'AppController.dashboard',
   'GET /project': 'ProjectController.show',
+  'GET /coachs': 'ProjectController.coachs',
   'GET /projects': 'ProjectController.projects',
 
   'PUT /project/:id': 'ProjectController.update',
   'POST /user/demande': 'UserController.demande',
+  'POST /user/coach': 'UserController.coach',
   'POST /user/demande/delete': 'UserController.demandeDelete'
 
 

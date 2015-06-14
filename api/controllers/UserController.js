@@ -88,6 +88,17 @@ module.exports = {
       });
   },
 
+  coach: function(req, res) {
+    sails.controllers.user.get({
+      id: req.param('coach')
+    })
+      .then(function(data) {
+        data.demande.remove(req.param('project'));
+        data.projects.add(req.param('project'));
+        data.save();
+        res.send(200);
+      });
+  },
   get: function(scope) {
     var deferred = Promise.defer();
     if (!scope) {

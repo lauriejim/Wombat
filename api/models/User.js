@@ -31,6 +31,10 @@ module.exports = {
     },
     demande: {
       collection: 'project',
+      via: 'demande'
+    },
+    projects: {
+      collection: 'project',
       via: 'coachs'
     }
   },
