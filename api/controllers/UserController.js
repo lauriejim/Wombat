@@ -96,7 +96,7 @@ module.exports = {
         data.demande.remove(req.param('project'));
         data.projects.add(req.param('project'));
         data.save();
-        res.send(200);
+        res.json({});
       });
   },
   get: function(scope) {
