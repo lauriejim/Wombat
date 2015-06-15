@@ -60,6 +60,7 @@ $(document).ready(function() {
         $('#frm_pitch').hide();
         $('#frm_besoins').hide();
         $('#frm_register').hide();
+        window.location.replace("/dashboard");
       });
   });
 

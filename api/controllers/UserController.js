@@ -37,11 +37,17 @@ module.exports = {
       lastname: req.param('lastname'),
       email: req.param('email'),
       password: req.param('password'),
-      rank: 'manager'
+      rank: 'manager',
+
+      entreprise: 'HETIC',
+      expertise: ['UI', 'Juridique']
     }
 
     User.create(user)
       .exec(function(err, user) {
+        req.session.user = user;
+        req.session.authenticated = true;
+
         var project = {
           pitch: req.param('pitch'),
           manager: user.id
@@ -61,7 +67,7 @@ module.exports = {
 
               });
             });
-            res.send(200);
+            res.json({});
           });
       })
   },
