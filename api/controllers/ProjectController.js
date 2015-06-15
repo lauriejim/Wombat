@@ -23,8 +23,7 @@ module.exports = {
     Project.find()
       .populate('needs')
       .populate('manager')
-      .populate('demande')
-      .populate('coachs')
+      .populate('demandes')
       .exec(function(err, projects) {
         console.log(projects);
         res.view('projects', {
@@ -34,16 +33,16 @@ module.exports = {
   },
 
   coachs: function(req, res) {
-    Project.find({
-      manager: req.session.user.id
+    Demande.find({
+      coach: req.session.user.id
     })
-      .populate('needs')
-      .populate('demande')
-      .populate('coachs')
-      .exec(function(err, project) {
-        console.log(project);
+      .populate('project')
+      .populate('coach')
+      .exec(function(err, demandes) {
+        console.log(demandes);
+
         res.view('coachs', {
-          project: project[0]
+          demandes: demandes
         });
       });
   },

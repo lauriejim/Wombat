@@ -1,5 +1,5 @@
 /**
- * Project.js
+ * Demande.js
  *
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs        :: http://sailsjs.org/#!documentation/models
@@ -8,19 +8,17 @@
 module.exports = {
 
   attributes: {
-    pitch: {
-      type: "STRING"
+    project: {
+      model: 'project'
     },
-    needs: {
-      collection: 'need',
-      via: 'project'
+    coach: {
+      model: 'user'
     },
-    manager: {
-      model: "user"
+    type: {
+      type: 'STRING'
     },
-    demandes: {
-      collection: 'demande',
-      via: 'project'
+    valide: {
+      type: 'BOOLEAN'
     }
   }
 };

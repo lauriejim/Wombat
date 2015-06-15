@@ -73,38 +73,43 @@ module.exports = {
   },
 
   demande: function(req, res) {
-    sails.controllers.user.get({
-      id: req.session.user.id
-    })
-      .then(function(data) {
-        data.demande.add(req.param('project'));
-        data.save();
-        res.send(200);
-      });
+    Demande.create({
+      coach: req.session.user.id,
+      project: req.param('project'),
+      type: req.param('type'),
+      valide: false
+    }).exec(function(err, demande) {
+      res.json({});
+    });
   },
 
   demandeDelete: function(req, res) {
-    sails.controllers.user.get({
-      id: req.session.user.id
-    })
-      .then(function(data) {
-        data.demande.remove(req.param('project'));
-        data.save();
-        res.send(200);
-      });
+    Demande.find({
+      coach: req.session.user.id,
+      project: req.param('project')
+    }).exec(function(err, demande) {
+      Demande.destroy(demande.id)
+        .exec(function(err, demande) {
+          res.json({});
+        });
+    });
   },
 
   coach: function(req, res) {
-    sails.controllers.user.get({
-      id: req.param('coach')
+    Demande.find({
+      coach: req.param('coach'),
+      project: req.param('project')
     })
-      .then(function(data) {
-        data.demande.remove(req.param('project'));
-        data.projects.add(req.param('project'));
-        data.save();
-        res.json({});
+      .exec(function(err, demande) {
+        Demande.update(demande.id, {
+          valide: true
+        })
+          .exec(function(err, demande) {
+            res.json({});
+          });
       });
   },
+
   get: function(scope) {
     var deferred = Promise.defer();
     if (!scope) {

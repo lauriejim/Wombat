@@ -30,12 +30,8 @@ module.exports = {
       type: 'STRING'
     },
     demande: {
-      collection: 'project',
-      via: 'demande'
-    },
-    projects: {
-      collection: 'project',
-      via: 'coachs'
+      collection: 'demande',
+      via: 'coach'
     }
   },
 

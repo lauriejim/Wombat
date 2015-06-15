@@ -13,8 +13,9 @@
   <div class="page-title">
     <h3>Vos mentors.</h3>
   </div>
-      <div class="row">
-        <% for(var i=0; i<project.coachs.length; i++) {%>
+       <div class="row">
+        <% for(var i=0; i<demandes.length; i++) {
+          if (demandes[i].valide) {%>
 
         <!-- BEGIN BLOG POST WITH IMAGE -->
                <div class="col-md-4">
@@ -27,13 +28,15 @@
               <img src="images/profiles/d2x.jpg" alt="" data-src="images/profiles/d.jpg" data-src-retina="images/profiles/d2x.jpg" width="35" height="35">
               </div>
                           <div class="comment">
-                            <div class="user-name text-black bold"><%= project.coachs[i].firstname %> <span class="semi-bold"><%= project.coachs[i].lastname %></span> </div>
-                            <div class="preview-wrapper">@ <%= project.coachs[i].firstname %><%= project.coachs[i].lastname %> </div>
+                            <div class="user-name text-black bold"><%= demandes[i].coach.firstname %> <span class="semi-bold"><%= demandes[i].coach.lastname %></span> </div>
+                            <div class="preview-wrapper">@ <%= demandes[i].coach.firstname %><%= demandes[i].coach.lastname %> </div>
                           </div>
                           <div class="clearfix"></div>
                         </div>
-                        <div class="clearfix"></div>
                         <div class="p-l-15 p-t-10 p-r-20">
+                          <div class="post p-t-10 p-b-10">
+                            <a href="#" class="hashtags m-b-5"> #<%= demandes[i].type %> </a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -42,12 +45,14 @@
                 </div>
         <!-- BEGIN BLOG POST WITH IMAGE -->
         <% } %>
+        <% } %>
       </div>
   <div class="page-title">
     <h3>Ils vous proposent leur aide.</h3>
   </div>
              <div class="row">
-        <% for(var i=0; i<project.demande.length; i++) {%>
+        <% for(var i=0; i<demandes.length; i++) {
+          if (!demandes[i].valide) {%>
 
         <!-- BEGIN BLOG POST WITH IMAGE -->
                <div class="col-md-4">
@@ -60,14 +65,19 @@
               <img src="images/profiles/d2x.jpg" alt="" data-src="images/profiles/d.jpg" data-src-retina="images/profiles/d2x.jpg" width="35" height="35">
               </div>
                           <div class="comment">
-                            <div class="user-name text-black bold"><%= project.demande[i].firstname %> <span class="semi-bold"><%= project.demande[i].lastname %></span> </div>
-                            <div class="preview-wrapper">@ <%= project.demande[i].firstname %><%= project.demande[i].lastname %> </div>
+                            <div class="user-name text-black bold"><%= demandes[i].coach.firstname %> <span class="semi-bold"><%= demandes[i].coach.lastname %></span> </div>
+                            <div class="preview-wrapper">@ <%= demandes[i].coach.firstname %><%= demandes[i].coach.lastname %> </div>
                           </div>
                           <div class="clearfix"></div>
                         </div>
+                        <div class="p-l-15 p-t-10 p-r-20">
+                          <div class="post p-t-10 p-b-10">
+                            <a href="#" class="hashtags m-b-5"> #<%= demandes[i].type %> </a>
+                          </div>
+                        </div>
                         <div class="clearfix"></div>
                         <div class="p-l-15 p-t-10 p-r-20">
-                            <button type="button" class="btn btn-success btn-cons" data-id="<%= project.id %>" data-coach="<%= project.demande[i].id %>">Valide</button>
+                            <button type="button" class="btn btn-success btn-cons" data-id="<%= demandes[i].project.id %>" data-coach="<%= demandes[i].coach.id %>">Valide</button>
                         </div>
                       </div>
                     </div>
@@ -75,6 +85,7 @@
                 </div>
                 </div>
         <!-- BEGIN BLOG POST WITH IMAGE -->
+        <% } %>
         <% } %>
       </div>
   </div>

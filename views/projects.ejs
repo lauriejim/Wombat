@@ -16,11 +16,17 @@
       <div class="row">
         <% for(var i=0; i<projects.length; i++) {%>
 
-        <% var coach = false; for(var l=0; l<projects[i].coachs.length; l++) {
-          if (projects[i].coachs[l].id === req.session.user.id) coach = true;
+        <% var coach = false; for(var l=0; l<projects[i].demandes.length; l++) {
+          if (projects[i].demandes[l].coach === req.session.user.id && projects[i].demandes[l].valide) coach = true;
         }
 
-        if (!coach) {%>
+        var help = false; for(var m=0; m<projects[i].needs.length; m++) {
+          for(var n=0; n<req.session.user.expertise.length; n++) {
+            if (projects[i].needs[m].type === req.session.user.expertise[n]) help = true;
+          }
+        }
+
+        if (!coach && help) {%>
 
         <!-- BEGIN BLOG POST WITH IMAGE -->
         <div class="col-md-4">
@@ -50,17 +56,32 @@
                           <div class="clearfix"></div>
                         </div>
                         <div class="clearfix"></div>
-                        <div class="p-l-15 p-t-10 p-r-20">
+                        <% var demande = false; for(var k=0; k<projects[i].demandes.length; k++) {
+                          if (projects[i].demandes[k].coach === req.session.user.id) demande = true;
+                        } %>
+                        <div class="p-l-15 p-t-10 p-r-20 <% if (!demande) { %>b-b<% } %>">
                           <div class="post p-t-10 p-b-10">
                             <p class="p-b-10"><%= projects[i].pitch %></p>
                             <% for(var j=0; j<projects[i].needs.length; j++) {%>
-                            <a href="#" class="hashtags m-b-5"> #<%= projects[i].needs[j].type %> </a>
+                              <a href="#" class="hashtags m-b-5"> #<%= projects[i].needs[j].type %> </a>
                             <% } %>
-                            </div>
-                            <% var help = false; for(var k=0; k<projects[i].demande.length; k++) {
-                              if (projects[i].demande[k].id === req.session.user.id) help = true;
-                            } %>
-                            <button type="button" class="btn <% if (help) { %>btn-success<% } else { %>btn-info<% } %> btn-cons" data-id="<%= projects[i].id %>"><% if (help) { %>Thx to help this team<% } else { %>Help this team<% } %></button>
+                          </div>
+                        </div>
+                        <div class="p-l-15 p-t-10 p-r-20">
+                        <% if (!demande) { %>
+                          <div class="post p-t-10 p-b-10">
+                            <select name="type" id="helpType">
+                              <% for(var o=0; o<projects[i].needs.length; o++) {
+                                var postule = false; for(var p=0; p<req.session.user.expertise.length; p++) {
+                                  if (projects[i].needs[o].type === req.session.user.expertise[p]) postule = true;
+                                } if (postule) { %>
+                                  <option value="<%= projects[i].needs[o].type %>"><%= projects[i].needs[o].type %></option>
+                                <% } %>
+                              <% } %>
+                            </select>
+                          </div>
+                        <% } %>
+                            <button type="button" class="btn <% if (demande) { %>btn-success<% } else { %>btn-info<% } %> btn-cons" data-id="<%= projects[i].id %>"><% if (demande) { %>Thx to help this team<% } else { %>Help this team<% } %></button>
                         </div>
                       </div>
                     </div>
@@ -80,6 +101,7 @@
     $('.btn').click(function(e) {
       e.preventDefault();
       var project = $(this).attr('data-id');
+      var type = $('#helpType').val();
       $(this).toggleClass("btn-info");
       $(this).toggleClass("btn-success");
 
@@ -92,8 +114,11 @@
           url: "/user/demande",
           headers: {"X-HTTP-Method-Override": "POST"},
           data: {
+            type: type,
             project: project
           }
+        }).done(function() {
+          window.location.reload();
         });
       } else {
         $(this).html("Help this team");
@@ -106,6 +131,8 @@
           data: {
             project: project
           }
+        }).done(function() {
+          window.location.reload();
         });
       }
     });
