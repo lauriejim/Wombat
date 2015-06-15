@@ -108,7 +108,7 @@ module.exports = {
       project: req.param('project')
     })
       .exec(function(err, demande) {
-        Demande.update(demande.id, {
+        Demande.update(demande[0].id, {
           valide: true
         })
           .exec(function(err, demande) {

@@ -33,17 +33,22 @@ module.exports = {
   },
 
   coachs: function(req, res) {
-    Demande.find({
-      coach: req.session.user.id
+    Project.find({
+      manager: req.session.user.id
     })
-      .populate('project')
-      .populate('coach')
-      .exec(function(err, demandes) {
-        console.log(demandes);
+      .exec(function(err, project) {
+        Demande.find({
+          project: project[0].id
+        })
+          .populate('project')
+          .populate('coach')
+          .exec(function(err, demandes) {
+            console.log(demandes);
 
-        res.view('coachs', {
-          demandes: demandes
-        });
+            res.view('coachs', {
+              demandes: demandes
+            });
+          });
       });
   },
 

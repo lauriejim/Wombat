@@ -52,7 +52,12 @@
   </div>
              <div class="row">
         <% for(var i=0; i<demandes.length; i++) {
-          if (!demandes[i].valide) {%>
+          var already = false;
+          for(var j=0; j<demandes.length; j++) {
+            if (demandes[j].id !== demandes[i].id && demandes[j].type === demandes[i].type && demandes[j].valide) already = true
+          }
+
+          if (!demandes[i].valide && !already) {%>
 
         <!-- BEGIN BLOG POST WITH IMAGE -->
                <div class="col-md-4">

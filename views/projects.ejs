@@ -16,13 +16,20 @@
       <div class="row">
         <% for(var i=0; i<projects.length; i++) {%>
 
-        <% var coach = false; for(var l=0; l<projects[i].demandes.length; l++) {
+        <% var coach = false;
+        for(var l=0; l<projects[i].demandes.length; l++) {
           if (projects[i].demandes[l].coach === req.session.user.id && projects[i].demandes[l].valide) coach = true;
         }
 
-        var help = false; for(var m=0; m<projects[i].needs.length; m++) {
+        var help = false;
+        for(var m=0; m<projects[i].needs.length; m++) {
           for(var n=0; n<req.session.user.expertise.length; n++) {
             if (projects[i].needs[m].type === req.session.user.expertise[n]) help = true;
+
+            for(var l=0; l<projects[i].demandes.length; l++) {
+              if (req.session.user.expertise[n] === projects[i].needs[m].type && req.session.user.expertise[n] === projects[i].demandes[l].type && projects[i].demandes[l].validate) help = false;
+            }
+
           }
         }
 
@@ -72,8 +79,12 @@
                           <div class="post p-t-10 p-b-10">
                             <select name="type" id="helpType">
                               <% for(var o=0; o<projects[i].needs.length; o++) {
-                                var postule = false; for(var p=0; p<req.session.user.expertise.length; p++) {
+                                var postule = false;
+                                for(var p=0; p<req.session.user.expertise.length; p++) {
                                   if (projects[i].needs[o].type === req.session.user.expertise[p]) postule = true;
+                                  for(var l=0; l<projects[i].demandes.length; l++) {
+                                    if (projects[i].demandes[l].valide && projects[i].demandes[l].type === req.session.user.expertise[p]) postule = false;
+                                  }
                                 } if (postule) { %>
                                   <option value="<%= projects[i].needs[o].type %>"><%= projects[i].needs[o].type %></option>
                                 <% } %>

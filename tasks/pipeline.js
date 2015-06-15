@@ -33,6 +33,7 @@ var cssFilesToInject = [
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
+  'js/lodash.js',
   'plugins/jquery-1.8.3.min.js',
   'plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js',
   'plugins/bootstrap/js/bootstrap.min.js',
