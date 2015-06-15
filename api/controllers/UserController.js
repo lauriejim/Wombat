@@ -4,6 +4,7 @@
 
 // Services
 var UserService = require('../services/UserService');
+var Promise = require('bluebird');
 
 module.exports = {
   login: function(req, res) {
@@ -84,7 +85,8 @@ module.exports = {
       coach: req.session.user.id,
       project: req.param('project'),
       type: req.param('type'),
-      valide: false
+      validated: false,
+      open: true
     }).exec(function(err, demande) {
       res.json({});
     });
@@ -103,16 +105,41 @@ module.exports = {
   },
 
   coach: function(req, res) {
-    Demande.find({
-      coach: req.param('coach'),
-      project: req.param('project')
-    })
-      .exec(function(err, demande) {
-        Demande.update(demande[0].id, {
-          valide: true
-        })
-          .exec(function(err, demande) {
-            res.json({});
+    function close(id) {
+      var deferred = Promise.defer();
+      Demande.update(id, {
+        open: false
+      })
+        .exec(function(err, demande) {
+          deferred.resolve();
+        });
+      return deferred.promise;
+    }
+
+    Project.find(req.param('project'))
+      .populate('demandes')
+      .exec(function(err, project) {
+        var liste = [];
+        project[0].demandes.forEach(function(demande) {
+          liste.push(close(demande.id));
+        });
+
+        Promise.all(liste)
+          .then(function() {
+            Demande.find({
+              coach: req.param('coach'),
+              project: req.param('project'),
+              type: req.param('type')
+            })
+              .exec(function(err, demande) {
+                Demande.update(demande[0].id, {
+                  validated: true,
+                  open: false
+                })
+                  .exec(function(err, demande) {
+                    res.json({});
+                  });
+              });
           });
       });
   },

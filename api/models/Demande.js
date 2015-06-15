@@ -17,7 +17,10 @@ module.exports = {
     type: {
       type: 'STRING'
     },
-    valide: {
+    validated: {
+      type: 'BOOLEAN'
+    },
+    open: {
       type: 'BOOLEAN'
     }
   }

@@ -15,7 +15,7 @@
   </div>
        <div class="row">
         <% for(var i=0; i<demandes.length; i++) {
-          if (demandes[i].valide) {%>
+          if (demandes[i].validated) {%>
 
         <!-- BEGIN BLOG POST WITH IMAGE -->
                <div class="col-md-4">
@@ -54,10 +54,10 @@
         <% for(var i=0; i<demandes.length; i++) {
           var already = false;
           for(var j=0; j<demandes.length; j++) {
-            if (demandes[j].id !== demandes[i].id && demandes[j].type === demandes[i].type && demandes[j].valide) already = true
+            if (demandes[j].id !== demandes[i].id && demandes[j].type === demandes[i].type && demandes[j].validated) already = true
           }
 
-          if (!demandes[i].valide && !already) {%>
+          if (!demandes[i].validated && !already) {%>
 
         <!-- BEGIN BLOG POST WITH IMAGE -->
                <div class="col-md-4">
@@ -82,7 +82,7 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="p-l-15 p-t-10 p-r-20">
-                            <button type="button" class="btn btn-success btn-cons" data-id="<%= demandes[i].project.id %>" data-coach="<%= demandes[i].coach.id %>">Valide</button>
+                            <button type="button" class="btn btn-success btn-cons" data-id="<%= demandes[i].project.id %>" data-coach="<%= demandes[i].coach.id %>" data-type="<%= demandes[i].type %>">Valide</button>
                         </div>
                       </div>
                     </div>
@@ -103,6 +103,7 @@
       e.preventDefault();
       var project = $(this).attr('data-id');
       var coach = $(this).attr('data-coach');
+      var type = $(this).attr('data-type');
 
       $.ajax({
         type: 'POST',
@@ -111,7 +112,8 @@
         headers: {"X-HTTP-Method-Override": "POST"},
         data: {
           project: project,
-          coach: coach
+          coach: coach,
+          type: type
         }
       })
       .done(function(data) {
