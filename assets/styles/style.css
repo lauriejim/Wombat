@@ -305,7 +305,7 @@ body.bottom-header .page-content .content {
   margin-right: 5px;
   display: inline-block;
   float: left;
-  min-width: 163px;
+  /*min-width: 163px;*/
 }
 .header .chat-toggler .user-details {
   display: inline-block;

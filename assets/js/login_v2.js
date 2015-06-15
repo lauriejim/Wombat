@@ -56,10 +56,6 @@ $(document).ready(function() {
       password: user.password
     })
       .done(function(data) {
-        $('#frm_login').show();
-        $('#frm_pitch').hide();
-        $('#frm_besoins').hide();
-        $('#frm_register').hide();
         window.location.replace("/dashboard");
       });
   });

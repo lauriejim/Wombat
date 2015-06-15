@@ -31,6 +31,13 @@ module.exports = {
       });
   },
 
+  logout: function(req, res) {
+    delete req.session.user;
+    delete req.session.authenticated;
+
+    res.redirect('/');
+  },
+
   register: function(req, res) {
     var user = {
       firstname: req.param('firstname'),
