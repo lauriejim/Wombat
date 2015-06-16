@@ -69,7 +69,9 @@ module.exports = {
     })
       .populate('manager')
       .populate('needs')
+      .populate('demandes')
       .exec(function(err, projects) {
+        console.log(projects);
         res.view('audits', {
           projects: projects
         });
