@@ -64,6 +64,8 @@ module.exports = {
 
         var project = {
           pitch: req.param('pitch'),
+          open: false,
+          audit: 'none',
           manager: user.id
         };
 

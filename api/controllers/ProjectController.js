@@ -52,6 +52,30 @@ module.exports = {
       });
   },
 
+  audits: function(req, res) {
+    Project.find({
+      where: {
+        audit: 'open'
+      }
+    })
+      .populate('manager')
+      .populate('needs')
+      .exec(function(err, projects) {
+        res.view('audits', {
+          projects: projects
+        });
+      });
+  },
+
+  audit: function(req, res) {
+    Project.update(req.session.user.id, {
+      audit: 'open'
+    })
+      .exec(function(err, project) {
+        res.json({});
+      });
+  },
+
   update: function(req, res) {
     scope = req.params.all();
     sails.log(scope);

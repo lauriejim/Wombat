@@ -11,6 +11,12 @@ module.exports = {
     pitch: {
       type: "STRING"
     },
+    audit: {
+      type: "STRING"
+    },
+    open: {
+      type: 'BOOLEAN'
+    },
     needs: {
       collection: 'need',
       via: 'project'

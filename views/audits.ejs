@@ -1,0 +1,57 @@
+<!-- BEGIN PAGE CONTAINER-->
+<div class="page-content">
+  <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+  <div id="portlet-config" class="modal hide">
+    <div class="modal-header">
+      <button data-dismiss="modal" class="close" type="button"></button>
+      <h3>Widget Settings</h3>
+    </div>
+    <div class="modal-body"> Widget settings form goes here </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="content">
+  <div class="page-title">
+    <h3>You can audit this team : </h3>
+  </div>
+       <div class="row">
+        <% for(var i=0; i<projects.length; i++) {
+
+        if (projects[i].audit === 'open') {%>
+
+        <!-- BEGIN BLOG POST WITH IMAGE -->
+               <div class="col-md-4">
+          <div class="widget-item narrow-margin">
+                  <div class="tiles white ">
+                    <div class="tiles-body">
+                      <div class="row">
+                        <div class="user-comment-wrapper pull-left">
+                          <div class="profile-wrapper">
+              <img src="images/profiles/d2x.jpg" alt="" data-src="images/profiles/d.jpg" data-src-retina="images/profiles/d2x.jpg" width="35" height="35">
+              </div>
+                          <div class="comment">
+                            <div class="user-name text-black bold"><%= projects[i].manager.firstname %> <span class="semi-bold"><%= projects[i].manager.lastname %></span> </div>
+                            <div class="preview-wrapper">@ Project name </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="p-l-15 p-t-10 p-r-20 ">
+                          <div class="post p-t-10 p-b-10">
+                            <p class="p-b-10"><%= projects[i].pitch %></p>
+                            <% for(var j=0; j<projects[i].needs.length; j++) {%>
+                              <a href="#" class="hashtags m-b-5"> #<%= projects[i].needs[j].type %> </a>
+                            <% } %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+        <!-- BEGIN BLOG POST WITH IMAGE -->
+          <% } %>
+        <% } %>
+      </div>
+  </div>
+</div>
+<!-- END PAGE CONTAINER-->
