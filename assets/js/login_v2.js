@@ -18,14 +18,23 @@ $(document).ready(function() {
     $('#frm_register').hide();
   });
 
+  $('#back_register_toggle').click(function() {
+    $('#frm_login').hide();
+    $('#frm_pitch').show();
+    $('#frm_besoins').hide();
+    $('#frm_register').hide();
+  });
+
   $(".lazy").lazyload({
     effect: "fadeIn"
   });
 
   $('#start').click(function() {
-    user.pitch = $('#pitch').val();
-    $('#frm_pitch').hide();
-    $('#frm_besoins').show();
+    if ($('#pitch').val() !== '') {
+      user.pitch = $('#pitch').val();
+      $('#frm_pitch').hide();
+      $('#frm_besoins').show();
+    }
   });
 
   $('#account').click(function() {
@@ -41,11 +50,21 @@ $(document).ready(function() {
     $('#frm_register').show();
   });
 
+  $('#back_account').click(function() {
+    $('#frm_besoins').show();
+    $('#frm_register').hide();
+  });
+
   $('#finish').click(function() {
     user.firstname = $('#firstname').val();
     user.lastname = $('#lastname').val();
     user.email = $('#reg_email').val();
     user.password = $('#reg_password').val();
+
+    if (user.firstname === '') return false;
+    if (user.lastname === '') return false;
+    if (user.email === '') return false;
+    if (user.password === '') return false;
 
     $.post("/register", {
       pitch: user.pitch,
@@ -56,7 +75,7 @@ $(document).ready(function() {
       password: user.password
     })
       .done(function(data) {
-        window.location.replace("/dashboard");
+        if (!data.err) window.location.replace("/dashboard");
       });
   });
 

@@ -55,8 +55,8 @@
           <% } if (project.audit === 'open') { %>
             <span class="label label-info">Audit en cours</span><br><br>
           <% } %>
-          <% if (project.audit !== 'open' && !project.open) { %>
-            <button id="start" class="btn btn-success">Lancer l'annonce</button><br><br>
+          <% if (project.audit !== 'open' && !project.open && project.needs.length > 0) { %>
+            <button id="start" class="btn btn-success">Lancer l'annonce</button>
             <script>
               $('#start').on('click', function(e) {
                 e.preventDefault();
@@ -74,6 +74,7 @@
               });
             </script>
           <% } %>
+          <br><br>
           </div>
         </div>
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">

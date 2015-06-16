@@ -59,6 +59,10 @@ module.exports = {
 
     User.create(user)
       .exec(function(err, user) {
+        if (err) return res.json({
+          err: err
+        });
+
         req.session.user = user;
         req.session.authenticated = true;
 
@@ -71,7 +75,7 @@ module.exports = {
 
         Project.create(project)
           .exec(function(err, project) {
-            needs = req.param('needs');
+            needs = req.param('needs') || [];
 
             needs.forEach(function(need) {
 
