@@ -1,0 +1,62 @@
+<!-- BEGIN PAGE CONTAINER-->
+<div class="page-content">
+  <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+  <div id="portlet-config" class="modal hide">
+    <div class="modal-header">
+      <button data-dismiss="modal" class="close" type="button"></button>
+      <h3>Widget Settings</h3>
+    </div>
+    <div class="modal-body"> Widget settings form goes here </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="content">
+  <div class="page-title">
+    <h3>Credit card</h3>
+  </div>
+  <div class="row">
+    <form method="POST" action="/credit">
+      <div class="col-md-8 col-sm-8 col-xs-8">
+        <div class="form-group">
+          <label class="form-label">Pays de comiciliation banquaire</label>
+          <div class="controls">
+            <input name="country" type="text" class="form-control" value="<%= req.session.user.country%>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Titulaire de compte</label>
+          <div class="controls">
+            <input name="compte" type="text" class="form-control" value="<%= req.session.user.compte%>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nom de l'agence</label>
+          <div class="controls">
+            <input name="agence" type="text" class="form-control" value="<%= req.session.user.agence%>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">IBAN</label>
+          <span class="help">Lettre incluse</span>
+          <div class="controls">
+            <input name="iban" type="text" class="form-control" value="<%= req.session.user.iban%>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">BIC</label>
+          <span class="help">ou SWIFT</span>
+          <div class="controls">
+            <input name="bic" type="text" class="form-control" value="<%= req.session.user.bic%>">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-8">
+        <div class="form-group">
+          <button type="submit" class="btn btn-success">Update</button>
+        </div>
+      </div>
+
+    </form>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTAINER-->

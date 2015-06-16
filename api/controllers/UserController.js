@@ -48,7 +48,13 @@ module.exports = {
       rank: 'manager',
 
       entreprise: 'HETIC',
-      expertise: ['UI', 'Juridique']
+      expertise: ['UI', 'Juridique'],
+
+      country: '',
+      compte: '',
+      agence: '',
+      iban: '',
+      bic: ''
     }
 
     User.create(user)
@@ -142,6 +148,20 @@ module.exports = {
                   });
               });
           });
+      });
+  },
+
+  credit: function(req, res) {
+    res.view('credit');
+  },
+
+  updateCredit: function(req, res) {
+    var card = req.params.all();
+    User.update(req.session.user.id, card)
+      .exec(function(err, user) {
+        req.session.user = user[0];
+
+        res.redirect('/credit');
       });
   },
 

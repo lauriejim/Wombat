@@ -27,6 +27,9 @@ module.exports.policies = {
    ***************************************************************************/
 
   AppController: ['sessionAuth'],
+  UserController: {
+    credit: ['sessionAuth']
+  },
   ProjectController: ['sessionAuth']
 
   /***************************************************************************

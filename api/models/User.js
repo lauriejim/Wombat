@@ -26,6 +26,21 @@ module.exports = {
     expertise: {
       type: 'ARRAY'
     },
+    country: {
+      type: 'STRING'
+    },
+    compte: {
+      type: 'STRING'
+    },
+    agence: {
+      type: 'STRING'
+    },
+    iban: {
+      type: 'STRING'
+    },
+    bic: {
+      type: 'STRING'
+    },
     rank: {
       type: 'STRING'
     },
