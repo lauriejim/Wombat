@@ -153,6 +153,20 @@ module.exports = {
       });
   },
 
+  manager: function(req, res) {
+    res.view('manager');
+  },
+
+  updateManager: function(req, res) {
+    var manager = req.params.all();
+    User.update(req.session.user.id, manager)
+      .exec(function(err, user) {
+        req.session.user = user[0];
+
+        res.redirect('/manager');
+      });
+  },
+
   credit: function(req, res) {
     res.view('credit');
   },

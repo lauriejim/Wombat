@@ -46,12 +46,14 @@ module.exports.routes = {
   'GET /dashboard': 'AppController.dashboard',
   'GET /project': 'ProjectController.show',
   'GET /coachs': 'ProjectController.coachs',
+  'GET /manager': 'UserController.manager',
 
   'GET /projects': 'ProjectController.projects',
   'GET /audits': 'ProjectController.audits',
   'GET /credit': 'UserController.credit',
 
   'POST /credit': 'UserController.updateCredit',
+  'POST /manager': 'UserController.updateManager',
 
   'POST /audit': 'ProjectController.audit',
   'POST /start': 'ProjectController.start',

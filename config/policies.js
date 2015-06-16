@@ -28,7 +28,8 @@ module.exports.policies = {
 
   AppController: ['sessionAuth'],
   UserController: {
-    credit: ['sessionAuth']
+    credit: ['sessionAuth'],
+    manager: ['sessionAuth']
   },
   ProjectController: ['sessionAuth']
 
