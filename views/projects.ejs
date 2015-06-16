@@ -127,7 +127,7 @@
                         <div class="p-l-15 p-t-10 p-r-20">
                         <% if (!demande) { %>
                           <div class="post p-t-10 p-b-10">
-                            <select name="type" id="helpType">
+                            <select name="type" id="<%= projects[i].id %>_helpType">
                               <% for(var o=0; o<projects[i].needs.length; o++) {
                                 var postule = false;
                                 for(var p=0; p<req.session.user.expertise.length; p++) {
@@ -140,6 +140,9 @@
                                 <% } %>
                               <% } %>
                             </select>
+                          </div>
+                          <div class="post p-t-10 p-b-10">
+                            <textarea name="<%= projects[i].id %>_comment" id="<%= projects[i].id %>_comment" rows="10" type="text" class="form-control" placeholder="How you can help this team"></textarea>
                           </div>
                         <% } %>
                             <button type="button" class="btn <% if (demande) { %>btn-success<% } else { %>btn-info<% } %> btn-cons" data-id="<%= projects[i].id %>"><% if (demande) { %>Thx to help this team<% } else { %>Help this team<% } %></button>
@@ -162,7 +165,8 @@
     $('.btn').click(function(e) {
       e.preventDefault();
       var project = $(this).attr('data-id');
-      var type = $('#helpType').val();
+      var type = $('#' + project + '_helpType').val();
+      var comment = $('#' + project + '_comment').val();
       $(this).toggleClass("btn-info");
       $(this).toggleClass("btn-success");
 
@@ -176,7 +180,8 @@
           headers: {"X-HTTP-Method-Override": "POST"},
           data: {
             type: type,
-            project: project
+            project: project,
+            comment: comment
           }
         }).done(function() {
           window.location.reload();

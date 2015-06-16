@@ -17,6 +17,9 @@ module.exports = {
     type: {
       type: 'STRING'
     },
+    comment: {
+      type: 'STRING'
+    },
     validated: {
       type: 'BOOLEAN'
     },

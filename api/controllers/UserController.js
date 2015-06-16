@@ -85,6 +85,7 @@ module.exports = {
       coach: req.session.user.id,
       project: req.param('project'),
       type: req.param('type'),
+      comment: req.param('comment'),
       validated: false,
       open: true
     }).exec(function(err, demande) {
