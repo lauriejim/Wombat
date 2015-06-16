@@ -11,7 +11,55 @@
   <div class="clearfix"></div>
   <div class="content">
   <div class="page-title">
-    <h3>Start-up</h3>
+    <h3>Vous aidez : </h3>
+  </div>
+       <div class="row">
+        <% for(var i=0; i<projects.length; i++) {%>
+
+        <% var coach = false;
+        var type = false;
+        for(var l=0; l<projects[i].demandes.length; l++) {
+          if (projects[i].demandes[l].coach === req.session.user.id && projects[i].demandes[l].validated) {
+            coach = true;
+            type = projects[i].demandes[l].type;
+          }
+        }
+
+        if (coach) {%>
+
+        <!-- BEGIN BLOG POST WITH IMAGE -->
+               <div class="col-md-4">
+          <div class="widget-item narrow-margin">
+                  <div class="tiles white ">
+                    <div class="tiles-body">
+                      <div class="row">
+                        <div class="user-comment-wrapper pull-left">
+                          <div class="profile-wrapper">
+              <img src="images/profiles/d2x.jpg" alt="" data-src="images/profiles/d.jpg" data-src-retina="images/profiles/d2x.jpg" width="35" height="35">
+              </div>
+                          <div class="comment">
+                            <div class="user-name text-black bold"><%= projects[i].manager.firstname %> <span class="semi-bold"><%= projects[i].manager.lastname %></span> </div>
+                            <div class="preview-wrapper">@ Project name </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="p-l-15 p-t-10 p-r-20">
+                          <div class="post p-t-10 p-b-10">
+                            <a href="#" class="hashtags m-b-5"> #<%= type %> </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+        <!-- BEGIN BLOG POST WITH IMAGE -->
+        <% } %>
+        <% } %>
+      </div>
+
+  <div class="page-title">
+    <h3>Start-up : </h3>
   </div>
       <div class="row">
         <% for(var i=0; i<projects.length; i++) {%>

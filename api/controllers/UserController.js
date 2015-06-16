@@ -19,16 +19,16 @@ module.exports = {
 
         return UserService.verifyPassword(password, user.password)
       })
-      .then(function() {
+      .then(function(match) {
+        if (!match) res.redirect('/');
+
         req.session.user = user;
         req.session.authenticated = true;
 
         res.redirect('/dashboard');
       })
       .catch(function(err) {
-        if (err === 'badRequest') return res.badRequest();
-
-        res.serverError(err)
+        res.redirect('/');
       });
   },
 
