@@ -15,10 +15,10 @@
       <form id="frm_pitch" class="animated fadeIn">
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-12">
-            <% if (project.audit === 'none') { %>
+            <% if (project.audit === 'none' && !project.open) { %>
             <script src="https://checkout.stripe.com/checkout.js"></script>
 
-            <button id="customButton" class="btn btn-primary">Need audit</button><br><br>
+            <button id="customButton" class="btn btn-primary">Need audit</button>
 
             <script>
               var handler = StripeCheckout.configure({
@@ -54,6 +54,25 @@
             </script>
           <% } if (project.audit === 'open') { %>
             <span class="label label-info">Audit en cours</span><br><br>
+          <% } %>
+          <% if (project.audit !== 'open' && !project.open) { %>
+            <button id="start" class="btn btn-success">Lancer l'annonce</button><br><br>
+            <script>
+              $('#start').on('click', function(e) {
+                e.preventDefault();
+                $.ajax({
+                  type: 'POST',
+                  dataType: 'json',
+                  url: "/start",
+                  headers: {"X-HTTP-Method-Override": "POST"},
+                  data:{
+                    project: <%= project.id %>
+                  }
+                }).done(function(data) {
+                  window.location.reload();
+                });
+              });
+            </script>
           <% } %>
           </div>
         </div>

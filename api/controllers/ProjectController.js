@@ -52,6 +52,15 @@ module.exports = {
       });
   },
 
+  start: function(req, res) {
+    Project.update(req.param('project'), {
+      open: true
+    })
+      .exec(function(err, project) {
+        res.json({});
+      });
+  },
+
   audits: function(req, res) {
     Project.find({
       where: {
