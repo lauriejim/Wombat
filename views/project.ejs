@@ -54,6 +54,8 @@
             </script>
           <% } if (project.audit === 'open') { %>
             <span class="label label-info">Audit en cours</span><br><br>
+          <% } if (project.open) { %>
+            <span class="label label-info">Projet ouvert à candidature</span>
           <% } %>
           <% if (project.audit !== 'open' && !project.open && project.needs.length > 0) { %>
             <button id="start" class="btn btn-success">Lancer l'annonce</button>
