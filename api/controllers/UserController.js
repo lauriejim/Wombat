@@ -153,6 +153,20 @@ module.exports = {
       });
   },
 
+  meCoach: function(req, res) {
+    res.view('coach');
+  },
+
+  updateCoach: function(req, res) {
+    var coach = req.params.all();
+    User.update(req.session.user.id, coach)
+      .exec(function(err, user) {
+        req.session.user = user[0];
+
+        res.redirect('/coach');
+      });
+  },
+
   manager: function(req, res) {
     res.view('manager');
   },
