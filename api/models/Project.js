@@ -27,6 +27,10 @@ module.exports = {
     demandes: {
       collection: 'demande',
       via: 'project'
+    },
+    docs: {
+      collection: 'doc',
+      via: 'project'
     }
   }
 };

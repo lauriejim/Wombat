@@ -19,6 +19,20 @@ module.exports = {
       });
   },
 
+  projectEspace: function(req, res) {
+    Doc.find({
+      project: req.param('id')
+    })
+      .populate('owner')
+      .exec(function(err, docs) {
+        console.log(docs);
+        res.view('projectEspace', {
+          docs: docs,
+          projectID: req.param('id')
+        });
+      });
+  },
+
   projects: function(req, res) {
     Project.find()
       .populate('needs')

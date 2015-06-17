@@ -48,6 +48,10 @@ module.exports = {
     demande: {
       collection: 'demande',
       via: 'coach'
+    },
+    docs: {
+      collection: 'doc',
+      via: 'owner'
     }
   },
 
