@@ -20,7 +20,7 @@ module.exports = {
     picto: {
       type: 'STRING'
     },
-    url: {
+    link: {
       type: 'STRING'
     },
     f_id: {
