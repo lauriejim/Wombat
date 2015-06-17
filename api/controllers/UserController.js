@@ -39,22 +39,44 @@ module.exports = {
     res.redirect('/');
   },
 
-  register: function(req, res) {
+  registerCoach: function(req, res) {
     var user = {
       firstname: req.param('firstname'),
       lastname: req.param('lastname'),
       email: req.param('email'),
       password: req.param('password'),
-      rank: 'manager',
+      rank: 'coach',
 
-      entreprise: 'HETIC',
-      expertise: ['UI', 'Juridique'],
+      entreprise: req.param('entreprise'),
+      expertise: [],
 
       country: '',
       compte: '',
       agence: '',
       iban: '',
       bic: ''
+    };
+
+    User.create(user)
+      .exec(function(err, user) {
+        if (err) return res.json({
+          err: err
+        });
+
+        req.session.user = user;
+        req.session.authenticated = true;
+
+        res.json({});
+      });
+  },
+
+  register: function(req, res) {
+    var user = {
+      firstname: req.param('firstname'),
+      lastname: req.param('lastname'),
+      email: req.param('email'),
+      password: req.param('password'),
+      rank: 'manager'
     }
 
     User.create(user)

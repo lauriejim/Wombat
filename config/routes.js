@@ -42,6 +42,7 @@ module.exports.routes = {
   'POST /login': 'UserController.login',
   'GET /logout': 'UserController.logout',
   'POST /register': 'UserController.register',
+  'POST /registerCoach': 'UserController.registerCoach',
 
   'GET /dashboard': 'AppController.dashboard',
   'GET /project': 'ProjectController.show',

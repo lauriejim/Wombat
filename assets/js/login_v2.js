@@ -9,6 +9,16 @@ $(document).ready(function() {
     $('#frm_pitch').hide();
     $('#frm_besoins').hide();
     $('#frm_register').hide();
+    $('#frm_register_coach').hide();
+  });
+
+  $('#register_coach_toggle').click(function() {
+    $('#frm_register_coach').show();
+    $('#frm_login').hide();
+    $('#frm_pitch').hide();
+    $('#frm_besoins').hide();
+    $('#frm_register').hide();
+    $('#frm_register').hide();
   });
 
   $('#register_toggle').click(function() {
@@ -16,6 +26,7 @@ $(document).ready(function() {
     $('#frm_pitch').show();
     $('#frm_besoins').hide();
     $('#frm_register').hide();
+    $('#frm_register_coach').hide();
   });
 
   $('#back_register_toggle').click(function() {
@@ -23,6 +34,7 @@ $(document).ready(function() {
     $('#frm_pitch').show();
     $('#frm_besoins').hide();
     $('#frm_register').hide();
+    $('#frm_register_coach').hide();
   });
 
   $(".lazy").lazyload({
@@ -73,6 +85,31 @@ $(document).ready(function() {
       lastname: user.lastname,
       email: user.email,
       password: user.password
+    })
+      .done(function(data) {
+        if (!data.err) window.location.replace("/dashboard");
+      });
+  });
+
+  $('#finish_coach').click(function() {
+    user.firstname = $('#firstname_coach').val();
+    user.lastname = $('#lastname_coach').val();
+    user.email = $('#reg_email_coach').val();
+    user.password = $('#reg_password_coach').val();
+    user.entreprise = $('#entreprise').val();
+
+    if (user.firstname === '') return false;
+    if (user.lastname === '') return false;
+    if (user.email === '') return false;
+    if (user.entreprise === '') return false;
+    if (user.password === '') return false;
+
+    $.post("/registerCoach", {
+      firstname: user.firstname,
+      lastname: user.lastname,
+      email: user.email,
+      password: user.password,
+      entreprise: user.entreprise
     })
       .done(function(data) {
         if (!data.err) window.location.replace("/dashboard");

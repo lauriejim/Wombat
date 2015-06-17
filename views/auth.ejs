@@ -27,12 +27,31 @@
 <div class="container">
   <div class="row login-container animated fadeInUp">
     <div class="col-md-8 col-md-offset-2 tiles white no-padding">
+
       <div class="p-t-30 p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10">
-          <h2 class="normal">Bienvenu sur ...</h2>
-          <p>Use Facebook, Twitter or your email to sign in.<br></p>
-          <p class="p-b-20">Sign up Now! for webarch accounts, it's free and always will be..</p>
-      <button type="button" class="btn btn-info btn-cons" id="register_toggle">Try it now !</button> or&nbsp;&nbsp;<button type="button" class="btn btn-primary btn-cons" id="login_toggle">Login</button>
+        <div class="row">
+        <h2 class="normal">Bienvenu sur Wombat</h2>
+          <div class="col-md-6">
+            <h2 class="normal">Your are startuper</h2>
+            <p>Use Facebook, Twitter or your email to sign in.<br></p>
+            <p class="p-b-20">Sign up Now! for webarch accounts, it's free and always will be..</p>
+            <button type="button" class="btn btn-info btn-cons" id="register_toggle">Try it now !</button>
+          </div>
+          <div class="col-md-6">
+            <h2 class="normal">You are coach</h2>
+            <p>Use Facebook, Twitter or your email to sign in.<br></p>
+            <p class="p-b-20">Sign up Now! for webarch accounts, it's free and always will be..</p>
+            <button type="button" class="btn btn-info btn-cons" id="register_coach_toggle">Register</button>
+          </div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-primary btn-cons" id="login_toggle">Login</button>
+          </div>
         </div>
+      </div>
+
+
+
+
     <div class="tiles grey p-t-20 p-b-20 text-black">
       <form id="frm_login" class="animated fadeIn" method="POST" action="/login" style="display:none">
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
@@ -59,6 +78,7 @@
           </div>
         </div>
       </form>
+
       <form id="frm_besoins" class="animated fadeIn" style="display:none">
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-12">
@@ -86,6 +106,7 @@
           </div>
         </div>
       </form>
+
       <form id="frm_register" class="animated fadeIn" style="display:none">
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-6 col-sm-6">
@@ -109,6 +130,37 @@
           <div class="col-md-12 ">
             <button type="button" class="btn btn-cons" id="back_account">Back</button>
             <button type="button" class="btn btn-info btn-cons" id="finish">Finish</button>
+          </div>
+        </div>
+      </form>
+
+      <form id="frm_register_coach" class="animated fadeIn" style="display:none">
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-6 col-sm-6">
+            <input name="firstname_coach" id="firstname_coach" type="text"  class="form-control" placeholder="First Name">
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <input name="lastname_coach" id="lastname_coach" type="text" class="form-control" placeholder="Last Name">
+          </div>
+        </div>
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-12 ">
+            <input name="reg_email_coach" id="reg_email_coach" type="text" class="form-control" placeholder="Email">
+          </div>
+        </div>
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-12 ">
+            <input name="entreprise" id="entreprise" type="text" class="form-control" placeholder="Your entreprise">
+          </div>
+        </div>
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-12">
+            <input name="reg_password_coach" id="reg_password_coach" type="password"  class="form-control" placeholder="Password">
+          </div>
+        </div>
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-12 ">
+            <button type="button" class="btn btn-info btn-cons" id="finish_coach">Finish</button>
           </div>
         </div>
       </form>
