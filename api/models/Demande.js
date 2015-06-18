@@ -20,6 +20,15 @@ module.exports = {
     comment: {
       type: 'STRING'
     },
+    hours: {
+      type: 'STRING'
+    },
+    weeks: {
+      type: 'STRING'
+    },
+    price: {
+      type: 'STRING'
+    },
     validated: {
       type: 'BOOLEAN'
     },

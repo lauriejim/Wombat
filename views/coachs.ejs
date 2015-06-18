@@ -88,9 +88,16 @@
                         <div class="col-md-12">
                             <p> <%= demandes[i].comment %> </p>
                         </div>
+                        <br><br>
+                        <div class="col-md-12">
+                            <p><b>Hours per weeks:</b> <%= demandes[i].hours %>h <br>
+                            <b>Price of one our:</b> <% var price = (parseFloat(demandes[i].price) + (10*parseFloat(demandes[i].price)/100)).toFixed(2) %><%= price %> euros<br>
+                            <b>During:</b> <%= demandes[i].weeks %> weeks<br><br>
+                            <b>Total:</b> <% var total = price*demandes[i].hours*demandes[i].weeks %><%= total.toFixed(2) %> euros</p>
+                        </div>
                         <div class="clearfix"></div>
                         <div class="p-l-15 p-t-10 p-r-20">
-                            <button type="button" class="btn btn-success btn-cons" data-id="<%= demandes[i].project.id %>" data-coach="<%= demandes[i].coach.id %>" data-type="<%= demandes[i].type %>">Valide</button>
+                            <button type="button" class="btn btn-success btn-cons" data-id="<%= demandes[i].project.id %>" data-coach="<%= demandes[i].coach.id %>" data-type="<%= demandes[i].type %>" data-total="<%= total %>">Valide</button>
                         </div>
                       </div>
                     </div>
@@ -105,28 +112,70 @@
 </div>
 <!-- END PAGE CONTAINER-->
 
+<script src="https://checkout.stripe.com/checkout.js"></script>
+
+  <button id="customButton" class="btn btn-primary">Need audit</button>
+
+  <script>
+
+
+    $('#customButton').on('click', function(e) {
+      // Open Checkout with further options
+      handler.open({
+        name: 'Wombat audit',
+        description: '',
+        currency: "eur",
+        amount: 7000
+      });
+      e.preventDefault();
+    });
+
+    // Close Checkout on page navigation
+  </script>
+
 <script type="text/javascript">
   $(document).ready(function() {
+
+    $(window).on('popstate', function() {
+      handler.close();
+    });
+
     $('.btn').click(function(e) {
       e.preventDefault();
       var project = $(this).attr('data-id');
       var coach = $(this).attr('data-coach');
       var type = $(this).attr('data-type');
+      var total = $(this).attr('data-total');
 
-      $.ajax({
-        type: 'POST',
-        dataType: 'json',
-        url: "/user/coach",
-        headers: {"X-HTTP-Method-Override": "POST"},
-        data: {
-          project: project,
-          coach: coach,
-          type: type
+      var handler = StripeCheckout.configure({
+        key: 'pk_test_K8Ipt5hlOkL0j2vqmzUK73EL',
+        image: '/images/stripeLogo.png',
+        token: function(token) {
+          $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: "/user/coach",
+            headers: {"X-HTTP-Method-Override": "POST"},
+            data: {
+              project: project,
+              coach: coach,
+              type: type
+            }
+          })
+          .done(function(data) {
+            window.location.reload();
+          });
         }
-      })
-      .done(function(data) {
-        window.location.reload();
       });
+
+      handler.open({
+        name: 'Wombat',
+        description: '',
+        currency: "eur",
+        amount: parseFloat(total).toFixed(2) * 100
+      });
+      e.preventDefault();
+
 
     });
   });

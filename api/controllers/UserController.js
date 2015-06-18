@@ -120,6 +120,9 @@ module.exports = {
       project: req.param('project'),
       type: req.param('type'),
       comment: req.param('comment'),
+      hours: req.param('hours'),
+      price: req.param('price'),
+      weeks: req.param('weeks'),
       validated: false,
       open: true
     }).exec(function(err, demande) {

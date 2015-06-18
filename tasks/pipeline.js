@@ -46,6 +46,7 @@ var jsFilesToInject = [
   'plugins/jquery-numberAnimate/jquery.animateNumbers.js',
   'plugins/jquery.cookie.js',
   'plugins/bootstrap-select2/select2.min.js',
+  'js/messages_notifications.js',
 
   'js/core.js',
   'js/demo.js'
