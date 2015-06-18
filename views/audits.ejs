@@ -50,6 +50,11 @@
                           </div>
                         </div>
                       </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <a href="/project/<%= projects[i].id %>" class="btn btn-success">Project access</a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -105,7 +110,7 @@
                         } %>
                         <div class="p-l-15 p-t-10 p-r-20 ">
                           <div class="post p-t-10 p-b-10">
-                            <button type="button" class="btn <% if (demande) { %>btn-success<% } else { %>btn-info<% } %> btn-cons" data-id="<%= projects[i].id %>"><% if (demande) { %>Thx to help this team<% } else { %>Help this team<% } %></button>
+                            <button type="button" class="btn btnAction<% if (demande) { %>btn-success<% } else { %>btn-info<% } %> btn-cons" data-id="<%= projects[i].id %>"><% if (demande) { %>Thx to help this team<% } else { %>Help this team<% } %></button>
                           </div>
                         </div>
                       </div>
@@ -123,7 +128,7 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    $('.btn').click(function(e) {
+    $('.btnAction').click(function(e) {
       e.preventDefault();
       var project = $(this).attr('data-id');
       $(this).toggleClass("btn-info");
