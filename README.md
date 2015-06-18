@@ -1,3 +1,3 @@
 # suw
 
-a [Sails](http://sailsjs.org) application
+a [Sails](http://suw-wombat.herokuapp.com/) Link to Wombat
