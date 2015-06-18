@@ -91,15 +91,15 @@
                         </div>
                         <br><br>
                         <div class="col-md-12">
-                            <p><b>Hours per weeks:</b> <%= demandes[i].hours %>h <br>
-                            <b>Price of one our:</b> <% var price = (parseFloat(demandes[i].price) + (10*parseFloat(demandes[i].price)/100)).toFixed(2) %><%= price %> euros<br>
-                            <b>During:</b> <%= demandes[i].weeks %> weeks<br><br>
-                            <b>Total:</b> <% var total = price*demandes[i].hours*demandes[i].weeks %><%= total.toFixed(2) %> euros</p>
+                            <p><b>Heures par semaine :</b> <%= demandes[i].hours %>h <br>
+                            <b>Prix d'une heure :</b> <% var price = (parseFloat(demandes[i].price) + (15*parseFloat(demandes[i].price)/100)).toFixed(2) %><%= price %> euros<br>
+                            <b>Durée :</b> <%= demandes[i].weeks %> semaines<br><br>
+                            <b>Total :</b> <% var total = price*demandes[i].hours*demandes[i].weeks %><%= total.toFixed(2) %> euros</p>
                         </div>
                         <% } %>
                         <div class="clearfix"></div>
                         <div class="p-l-15 p-t-10 p-r-20">
-                            <button type="button" class="btn btn-success btn-cons" data-id="<%= demandes[i].project.id %>" data-coach="<%= demandes[i].coach.id %>" data-type="<%= demandes[i].type %>" data-total="<%= total %>">Valide</button>
+                            <button type="button" class="btn btn-success btn-cons" data-id="<%= demandes[i].project.id %>" data-coach="<%= demandes[i].coach.id %>" data-type="<%= demandes[i].type %>" data-total="<%= total %>">Accepter l'offre</button>
                         </div>
                       </div>
                     </div>

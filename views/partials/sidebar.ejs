@@ -9,16 +9,16 @@
   <% if (req.session.user.rank === 'manager') { %>
   <ul>
     <li class="start"> <a href="/dashboard"> <i class="icon-custom-home"></i> <span class="title">Dashboard</span> </a></li>
-    <li class="start"> <a href="/manager"> <i class="fa fa-user"></i> <span class="title">Profile</span> </a></li>
+    <li class="start"> <a href="/manager"> <i class="fa fa-user"></i> <span class="title">Profil</span> </a></li>
     <li class="start"> <a href="/project"> <i class="fa fa-cog"></i> <span class="title">Projet</span> </a></li>
-    <li class="start"> <a href="/coachs"> <i class="fa fa-users"></i> <span class="title">Coachs</span> </a></li>
+    <li class="start"> <a href="/coachs"> <i class="fa fa-users"></i> <span class="title">Mentors</span> </a></li>
   </ul>
   <% } if (req.session.user.rank === 'coach') { %>
   <ul>
-    <li class="start"> <a href="/coach"> <i class="fa fa-user"></i> <span class="title">Profile</span> </a></li>
-    <li class="start"> <a href="/projects"> <i class="fa fa-list"></i> <span class="title">Projects</span> </a></li>
+    <li class="start"> <a href="/coach"> <i class="fa fa-user"></i> <span class="title">Profil</span> </a></li>
+    <li class="start"> <a href="/projects"> <i class="fa fa-list"></i> <span class="title">Projets</span> </a></li>
     <li class="start"> <a href="/audits"> <i class="fa fa-list"></i> <span class="title">Audits</span> </a></li>
-    <li class="start"> <a href="/credit"> <i class="fa fa-credit-card"></i> <span class="title">Credit account</span> </a></li>
+    <li class="start"> <a href="/credit"> <i class="fa fa-credit-card"></i> <span class="title">Compte bancaire</span> </a></li>
   </ul>
   <% } %>
 </div>

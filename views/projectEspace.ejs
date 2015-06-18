@@ -11,14 +11,14 @@
   <div class="clearfix"></div>
   <div class="content" ng-app="GoogleModule" ng-controller="GoogleController" ng-cloak>
   <div class="page-title">
-    <h3>Espace d'échange</h3>
+    <h3>Espace d'échanges</h3>
   </div>
     <div id="result"></div>
 
     <!-- The Google API Loader script. -->
     <div class="row">
       <div class="col-md-6">
-        <button id="addFile" class="btn btn-success">Add file from Google Drive</button><br><br>
+        <button id="addFile" class="btn btn-success">Ajouter un fichier depuis Google Drive</button><br><br>
       </div>
     </div>
 
@@ -27,14 +27,15 @@
         <div class="grid simple ">
             <div class="grid-title no-border">
                 <div class="grid-body no-border">
-                  <h3>Coach  <span class="semi-bold">files</span></h3>
+                  <h3>Fichiers du mentor</h3>
                     <table class="table no-more-tables">
                         <thead>
                           <tr>
                             <th style="width:9%">Type</th>
-                            <th style="width:22%">Name</th>
+                            <th style="width:22%">Nom du fichier</th>
+                            <th style="width:22%">De:</th>
                             <th style="width:22%">Date</th>
-                            <th style="width:6%">actions</th>
+                            <th style="width:6%">Actions</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -44,14 +45,17 @@
                             <td class="v-align-middle"><img src="<%= docs[i].picto %>"/></td>
                             <td class="v-align-middle"><span class="muted"><a href="<%= docs[i].link %>" target="_blank"><%= docs[i].name %></a></span>
                             </td>
+                             <td>
+                              <%= docs[i].owner.firstname %> <%= docs[i].owner.lastname %>
+                            </td>
                             <td>
                               <%= docs[i].createdAt %>
                             </td>
                             <td>
                             <% if (req.session.user.rank === 'coach') { %>
-                              <button class="btn btn-danger btnAction" data-id="<%= docs[i].id %>" data-f-id="<%= docs[i].f_id %>">DELETE</button>
+                              <button class="btn btn-danger btnAction" data-id="<%= docs[i].id %>" data-f-id="<%= docs[i].f_id %>">SUPPRIMER</button>
                               <% } %>
-                              <a href="<%= docs[i].link %>" class="btn btn-success" target="_blank">SHOW</a>
+                              <a href="<%= docs[i].link %>" class="btn btn-success" target="_blank">OUVRIR</a>
                             </td>
                           </tr>
                           <% } } %>
@@ -66,14 +70,14 @@
         <div class="grid simple ">
             <div class="grid-title no-border">
                 <div class="grid-body no-border">
-                  <h3>Manager  <span class="semi-bold">files</span></h3>
+                  <h3>Fichiers de la start-up</h3>
                     <table class="table no-more-tables">
                         <thead>
                           <tr>
                             <th style="width:9%">Type</th>
-                            <th style="width:22%">Name</th>
+                            <th style="width:22%">Nom du fichier</th>
                             <th style="width:22%">Date</th>
-                            <th style="width:6%">actions</th>
+                            <th style="width:6%">Actions</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -88,9 +92,9 @@
                             </td>
                             <td>
                             <% if (req.session.user.rank === 'manager') { %>
-                              <button class="btn btn-danger btnAction" data-id="<%= docs[i].id %>" data-f-id="<%= docs[i].f_id %>">DELETE</button>
+                              <button class="btn btn-danger btnAction" data-id="<%= docs[i].id %>" data-f-id="<%= docs[i].f_id %>">SUPPRIMER</button>
                               <% } %>
-                              <a href="<%= docs[i].link %>" class="btn btn-success" target="_blank">SHOW</a>
+                              <a href="<%= docs[i].link %>" class="btn btn-success" target="_blank">OUVRIR</a>
                             </td>
                           </tr>
                           <% } } %>

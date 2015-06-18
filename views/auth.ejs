@@ -48,21 +48,19 @@
 
       <div class="p-t-30 p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10">
         <div class="row">
-        <h2 class="normal">Bienvenu sur Wombat</h2>
+        <h2 class="normal">Bienvenue sur Wombat</h2>
           <div class="col-md-6">
-            <h2 class="normal">Your are startuper</h2>
-            <p>Use Facebook, Twitter or your email to sign in.<br></p>
-            <p class="p-b-20">Sign up Now! for webarch accounts, it's free and always will be..</p>
-            <button type="button" class="btn btn-info btn-cons" id="register_toggle">Try it now !</button>
+            <h2 class="normal">Vous êtes un startuper</h2>
+            <p>Maximisez vos chances de réussite !<br>Ressez des avis d'experts sur votre business et travaillez avec eux pour combler vos lacunes. <br><br></p>
+            <button type="button" class="btn btn-info btn-cons" id="register_toggle">Essayez maintenant !</button>
           </div>
           <div class="col-md-6">
-            <h2 class="normal">You are coach</h2>
-            <p>Use Facebook, Twitter or your email to sign in.<br></p>
-            <p class="p-b-20">Sign up Now! for webarch accounts, it's free and always will be..</p>
-            <button type="button" class="btn btn-info btn-cons" id="register_coach_toggle">Register</button>
+            <h2 class="normal">Vous êtes un expert</h2>
+            <p>Devenez un expert Wombat agréé et accompagnez les jeunes startups qui ont besoins de votre aide.<br><br><br></p>
+            <button type="button" class="btn btn-info btn-cons" id="register_coach_toggle">S'inscrire</button>
           </div>
           <div class="col-md-2">
-            <button type="button" class="btn btn-primary btn-cons" id="login_toggle">Login</button>
+            <button type="button" class="btn btn-primary btn-cons" id="login_toggle">Se connecter</button>
           </div>
         </div>
       </div>
@@ -74,10 +72,10 @@
       <form id="frm_login" class="animated fadeIn" method="POST" action="/login" style="display:none">
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-6 col-sm-6 ">
-            <input name="email" id="email" type="text"  class="form-control" placeholder="Email">
+            <input name="email" id="email" type="text"  class="form-control" placeholder="E-mail">
           </div>
           <div class="col-md-6 col-sm-6">
-            <input name="password" id="password" type="password"  class="form-control" placeholder="Password">
+            <input name="password" id="password" type="password"  class="form-control" placeholder="Mot de passe">
           </div>
           <div class="col-md-12 ">
             <button type="submit" class="btn btn-primary btn-cons">Go !</button>
@@ -87,12 +85,12 @@
       <form id="frm_pitch" class="animated fadeIn" style="display:none">
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-12 ">
-            <textarea name="pitch" id="pitch" rows="10" type="text" class="form-control" placeholder="Write your pitch"></textarea>
+            <textarea name="pitch" id="pitch" rows="10" type="text" class="form-control" placeholder="Décrivez votre projet"></textarea>
           </div>
         </div>
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-12 ">
-            <button type="button" class="btn btn-info btn-cons" id="start">Start</button>
+            <button type="button" class="btn btn-info btn-cons" id="start">Démarrer</button>
           </div>
         </div>
       </form>
@@ -100,7 +98,7 @@
       <form id="frm_besoins" class="animated fadeIn" style="display:none">
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-12">
-            <p>Dans quelle domaine avez-vous besoin d'aide ?</p>
+            <p>Dans quelle domaine pensez-vous avoir besoin d'aide ?</p>
             <br>
             <select id="multi" style="width:100%" multiple>
               <option value="UI">UI</option>
@@ -119,8 +117,8 @@
         </div>
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-12 ">
-            <button type="button" class="btn btn-cons" id="back_register_toggle">Back</button>
-            <button type="button" class="btn btn-info btn-cons" id="account">Create your account</button>
+            <button type="button" class="btn btn-cons" id="back_register_toggle">Retour</button>
+            <button type="button" class="btn btn-info btn-cons" id="account">Créer votre compte</button>
           </div>
         </div>
       </form>
@@ -128,26 +126,26 @@
       <form id="frm_register" class="animated fadeIn" style="display:none">
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-6 col-sm-6">
-            <input name="firstname" id="firstname" type="text"  class="form-control" placeholder="First Name">
+            <input name="firstname" id="firstname" type="text"  class="form-control" placeholder="Prénom">
           </div>
           <div class="col-md-6 col-sm-6">
-            <input name="lastname" id="lastname" type="text" class="form-control" placeholder="Last Name">
+            <input name="lastname" id="lastname" type="text" class="form-control" placeholder="Nom">
           </div>
         </div>
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-12 ">
-            <input name="reg_email" id="reg_email" type="text" class="form-control" placeholder="Email">
+            <input name="reg_email" id="reg_email" type="text" class="form-control" placeholder="E-mail">
           </div>
         </div>
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-12">
-            <input name="reg_password" id="reg_password" type="password"  class="form-control" placeholder="Password">
+            <input name="reg_password" id="reg_password" type="password"  class="form-control" placeholder="Mot de passe">
           </div>
         </div>
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-12 ">
-            <button type="button" class="btn btn-cons" id="back_account">Back</button>
-            <button type="button" class="btn btn-info btn-cons" id="finish">Finish</button>
+            <button type="button" class="btn btn-cons" id="back_account">Retour</button>
+            <button type="button" class="btn btn-info btn-cons" id="finish">Terminer</button>
           </div>
         </div>
       </form>
@@ -155,25 +153,25 @@
       <form id="frm_register_coach" class="animated fadeIn" style="display:none">
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-6 col-sm-6">
-            <input name="firstname_coach" id="firstname_coach" type="text"  class="form-control" placeholder="First Name">
+            <input name="firstname_coach" id="firstname_coach" type="text"  class="form-control" placeholder="Prénom">
           </div>
           <div class="col-md-6 col-sm-6">
-            <input name="lastname_coach" id="lastname_coach" type="text" class="form-control" placeholder="Last Name">
+            <input name="lastname_coach" id="lastname_coach" type="text" class="form-control" placeholder="Nom">
           </div>
         </div>
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-12 ">
-            <input name="reg_email_coach" id="reg_email_coach" type="text" class="form-control" placeholder="Email">
+            <input name="reg_email_coach" id="reg_email_coach" type="text" class="form-control" placeholder="E-mail">
           </div>
         </div>
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-12 ">
-            <input name="entreprise" id="entreprise" type="text" class="form-control" placeholder="Your entreprise">
+            <input name="entreprise" id="entreprise" type="text" class="form-control" placeholder="Votre entreprise">
           </div>
         </div>
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-12">
-            <input name="reg_password_coach" id="reg_password_coach" type="password"  class="form-control" placeholder="Password">
+            <input name="reg_password_coach" id="reg_password_coach" type="password"  class="form-control" placeholder="Mot de passe">
           </div>
         </div>
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">

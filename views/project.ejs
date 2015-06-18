@@ -11,14 +11,14 @@
   <div class="clearfix"></div>
   <div class="content">
   <div class="page-title">
-    <h3>Project</h3>
+    <h3>Votre projet</h3>
       <form id="frm_pitch" class="animated fadeIn">
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-12">
             <% if (project.audit === 'none' && !project.open) { %>
             <script src="https://checkout.stripe.com/checkout.js"></script>
 
-            <button id="customButton" class="btn btn-primary">Need audit</button>
+            <button id="customButton" class="btn btn-primary">Demander un audit</button>
 
             <script>
               var handler = StripeCheckout.configure({
@@ -42,7 +42,7 @@
                   name: 'Wombat audit',
                   description: '',
                   currency: "eur",
-                  amount: 7000
+                  amount: 40000
                 });
                 e.preventDefault();
               });
@@ -56,7 +56,7 @@
             <span class="label label-info">Audit en cours</span>
           <% } if (project.open) { %>
             <span class="label label-info">Projet ouvert à candidature</span>
-            <button id="stop" class="btn btn-warning">Stop</button>
+            <button id="stop" class="btn btn-warning">Désactiver l'annonce</button>
             <script>
               $('#stop').on('click', function(e) {
                 e.preventDefault();
@@ -75,7 +75,7 @@
             </script>
           <% } %>
           <% if (project.audit !== 'open' && !project.open && project.needs.length > 0) { %>
-            <button id="start" class="btn btn-success">Lancer l'annonce</button>
+            <button id="start" class="btn btn-success">Activer l'annonce</button>
             <script>
               $('#start').on('click', function(e) {
                 e.preventDefault();
@@ -94,7 +94,7 @@
             </script>
           <% } %>
 
-          <a class="btn btn-success" href="/project/<%= project.id %>">Project access</a>
+          <a class="btn btn-success" href="/project/<%= project.id %>">Accéder à l'espace de votre projet</a>
           <br><br>
           </div>
         </div>
@@ -105,7 +105,7 @@
         </div>
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-12">
-            <p>Dans quelle domaine avez-vous besoin d'aide ?</p>
+            <p>Dans quelle domaine pensez-vous avoir besoin d'aide ?</p>
             <br>
             <select id="multi" style="width:100%" multiple>
               <option value="UI">UI</option>
@@ -124,7 +124,7 @@
         </div>
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-12 ">
-            <button type="button" class="btn btn-info btn-cons" id="update">Update project</button>
+            <button type="button" class="btn btn-info btn-cons" id="update">Mettre à jour le projet</button>
           </div>
         </div>
       </form>

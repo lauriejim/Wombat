@@ -11,13 +11,13 @@
   <div class="clearfix"></div>
   <div class="content">
   <div class="page-title">
-    <h3>Credit card</h3>
+    <h3>Compte bancaire</h3>
   </div>
   <div class="row">
     <form method="POST" action="/credit">
       <div class="col-md-8 col-sm-8 col-xs-8">
         <div class="form-group">
-          <label class="form-label">Pays de comiciliation banquaire</label>
+          <label class="form-label">Pays de comiciliation bancaire</label>
           <div class="controls">
             <input name="country" type="text" class="form-control" value="<%= req.session.user.country%>">
           </div>
@@ -51,7 +51,7 @@
       </div>
       <div class="col-md-8 col-sm-8 col-xs-8">
         <div class="form-group">
-          <button type="submit" class="btn btn-success">Update</button>
+          <button type="submit" class="btn btn-success">Mettre à jour</button>
         </div>
       </div>
 
