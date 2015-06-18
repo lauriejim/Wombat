@@ -93,7 +93,9 @@ module.exports = {
   },
 
   audit: function(req, res) {
-    Project.update(req.session.user.id, {
+    Project.update({
+      manager: req.session.user.id
+    }, {
       audit: 'open'
     })
       .exec(function(err, project) {
