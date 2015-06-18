@@ -214,6 +214,8 @@ $(document).ready(function() {
       data: {
         pitch: $('#pitch').val()
       }
+    }).done(function() {
+      window.location.reload();
     });
 
   });

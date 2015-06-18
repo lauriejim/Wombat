@@ -26,13 +26,16 @@ module.exports.policies = {
    *                                                                          *
    ***************************************************************************/
 
-  AppController: ['sessionAuth'],
-  UserController: {
-    credit: ['sessionAuth'],
-    manager: ['sessionAuth'],
-    meCoach: ['sessionAuth']
+  '*': ['message'],
+  AppController: {
+    dashboard: ['sessionAuth', 'message']
   },
-  ProjectController: ['sessionAuth']
+  UserController: {
+    credit: ['sessionAuth', 'message'],
+    manager: ['sessionAuth', 'message'],
+    meCoach: ['sessionAuth', 'message']
+  },
+  ProjectController: ['sessionAuth', 'message']
 
   /***************************************************************************
    *                                                                          *

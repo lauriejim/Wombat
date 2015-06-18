@@ -32,12 +32,7 @@ module.exports.routes = {
    *                                                                          *
    ***************************************************************************/
 
-  'GET /': {
-    view: 'auth',
-    locals: {
-      layout: false
-    }
-  },
+  'GET /': 'AppController.auth',
 
   'POST /login': 'UserController.login',
   'GET /logout': 'UserController.logout',

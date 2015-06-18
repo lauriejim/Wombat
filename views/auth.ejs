@@ -25,6 +25,24 @@
 <!-- BEGIN BODY -->
 <body class="error-body no-top lazy"  data-original="images/work.jpg"  style="background-image: url('images/work.jpg')">
 <div class="container">
+ <% if (req.session.flashMessage) { %>
+          <% for (type in req.session.flashMessage) { %>
+
+            <div class="alert alert-<%= type %> alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+              </button>
+
+              <ul>
+                <% for (message in req.session.flashMessage[type]) { %>
+                 <li><%= req.session.flashMessage[type][message] %></li>
+               <% } %>
+             </ul>
+           </div>
+
+          <% } %>
+        <% } %>
   <div class="row login-container animated fadeInUp">
     <div class="col-md-8 col-md-offset-2 tiles white no-padding">
 

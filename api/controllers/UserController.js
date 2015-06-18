@@ -20,7 +20,14 @@ module.exports = {
         return UserService.verifyPassword(password, user.password)
       })
       .then(function(match) {
-        if (!match) res.redirect('/');
+        if (!match) {
+          var message = {
+            type: 'warning',
+            message: 'Email or password is bad'
+          };
+          sails.controllers.app.displayFlashMessage(req, message);
+          res.redirect('/');
+        }
 
         req.session.user = user;
         req.session.authenticated = true;
@@ -28,6 +35,12 @@ module.exports = {
         res.redirect('/dashboard');
       })
       .catch(function(err) {
+        var message = {
+          type: 'warning',
+          message: 'Email or password is bad'
+        };
+        sails.controllers.app.displayFlashMessage(req, message);
+
         res.redirect('/');
       });
   },
@@ -59,9 +72,16 @@ module.exports = {
 
     User.create(user)
       .exec(function(err, user) {
-        if (err) return res.json({
-          err: err
-        });
+        if (err) {
+          var message = {
+            type: 'warning',
+            message: 'Email already exist'
+          };
+          sails.controllers.app.displayFlashMessage(req, message);
+          return res.json({
+            err: err
+          });
+        }
 
         req.session.user = user;
         req.session.authenticated = true;
@@ -81,9 +101,16 @@ module.exports = {
 
     User.create(user)
       .exec(function(err, user) {
-        if (err) return res.json({
-          err: err
-        });
+        if (err) {
+          var message = {
+            type: 'warning',
+            message: 'Email already exist'
+          };
+          sails.controllers.app.displayFlashMessage(req, message);
+          return res.json({
+            err: err
+          });
+        }
 
         req.session.user = user;
         req.session.authenticated = true;
@@ -191,7 +218,11 @@ module.exports = {
     User.update(req.session.user.id, coach)
       .exec(function(err, user) {
         req.session.user = user[0];
-
+        var message = {
+          type: 'success',
+          message: 'Profil updated'
+        };
+        sails.controllers.app.displayFlashMessage(req, message);
         res.redirect('/coach');
       });
   },
@@ -205,7 +236,11 @@ module.exports = {
     User.update(req.session.user.id, manager)
       .exec(function(err, user) {
         req.session.user = user[0];
-
+        var message = {
+          type: 'success',
+          message: 'Profil updated'
+        };
+        sails.controllers.app.displayFlashMessage(req, message);
         res.redirect('/manager');
       });
   },
@@ -219,7 +254,11 @@ module.exports = {
     User.update(req.session.user.id, card)
       .exec(function(err, user) {
         req.session.user = user[0];
-
+        var message = {
+          type: 'success',
+          message: 'Compte updated'
+        };
+        sails.controllers.app.displayFlashMessage(req, message);
         res.redirect('/credit');
       });
   },

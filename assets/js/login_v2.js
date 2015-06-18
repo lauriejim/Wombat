@@ -88,6 +88,7 @@ $(document).ready(function() {
     })
       .done(function(data) {
         if (!data.err) window.location.replace("/dashboard");
+        else window.location.reload();
       });
   });
 
@@ -113,6 +114,7 @@ $(document).ready(function() {
     })
       .done(function(data) {
         if (!data.err) window.location.replace("/dashboard");
+        else window.location.reload();
       });
   });
 

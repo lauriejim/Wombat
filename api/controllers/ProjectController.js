@@ -110,7 +110,14 @@ module.exports = {
     Project.update(req.param('id'), scope)
       .exec(function(err, updated) {
         sails.log(err, updated);
-        res.redirect('/project');
+
+        var message = {
+          type: 'success',
+          message: 'Project updated'
+        };
+        sails.controllers.app.displayFlashMessage(req, message);
+
+        res.json({});
       });
   }
 };
