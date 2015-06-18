@@ -26,10 +26,15 @@ module.exports = {
       .populate('owner')
       .exec(function(err, docs) {
         console.log(docs);
-        res.view('projectEspace', {
-          docs: docs,
-          projectID: req.param('id')
-        });
+        Project.find(req.param('id'))
+          .populate('manager')
+          .exec(function(err, project) {
+            res.view('projectEspace', {
+              docs: docs,
+              project: project[0],
+              projectID: req.param('id')
+            });
+          })
       });
   },
 

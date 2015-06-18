@@ -78,7 +78,7 @@
                         </thead>
                         <tbody>
                           <% for (var i=0;i<docs.length;i++) {
-                            if ((req.session.user.rank === 'manager' && docs[i].owner.id === req.session.user.id) || (req.session.user.rank === 'coach' && docs[i].owner.id !== req.session.user.id)) { %>
+                            if ((req.session.user.rank === 'manager' && docs[i].owner.id === req.session.user.id) || (req.session.user.rank === 'coach' && docs[i].owner.id === project.manager.id)) { %>
                           <tr>
                             <td class="v-align-middle"><img src="<%= docs[i].picto %>"/></td>
                             <td class="v-align-middle"><span class="muted"><a href="<%= docs[i].link %>" target="_blank"><%= docs[i].name %></a></span>
