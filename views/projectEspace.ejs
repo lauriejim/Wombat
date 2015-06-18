@@ -43,7 +43,7 @@
                             <td class="v-align-middle"><img src="<%= docs[i].picto %>"/></td>
                             <td class="v-align-middle"><span class="muted"><a href="<%= docs[i].link %>" target="_blank"><%= docs[i].name %></a></span>
                             </td>
-                            <td><span><button class="btn btn-danger" data-id="<%= docs[i].id %>">DELETE</button></span>
+                            <td><span><button class="btn btn-danger" data-id="<%= docs[i].id %>" data-f-id="<%= docs[i].f_id %>">DELETE</button></span>
                             </td>
                           </tr>
                           <% } } %>
@@ -72,9 +72,9 @@
                             if ((req.session.user.rank === 'manager' && docs[i].owner.id === req.session.user.id) || (req.session.user.rank === 'coach' && docs[i].owner.id !== req.session.user.id)) { %>
                           <tr>
                             <td class="v-align-middle"><img src="<%= docs[i].picto %>"/></td>
-                            <td class="v-align-middle"><span class="muted"><a href="<%= docs[i].link %>"><%= docs[i].name %></a></span>
+                            <td class="v-align-middle"><span class="muted"><a href="<%= docs[i].link %>" target="_blank"><%= docs[i].name %></a></span>
                             </td>
-                            <td><span><button class="btn btn-danger" data-id="<%= docs[i].id %>">DELETE</button></span>
+                            <td><span><button class="btn btn-danger" data-id="<%= docs[i].id %>" data-f-id="<%= docs[i].f_id %>">DELETE</button></span>
                             </td>
                           </tr>
                           <% } } %>
@@ -111,8 +111,13 @@
 
   // Use the Google API Loader script to load the google.picker script.
   function loadPicker() {
-    gapi.load('auth', {'callback': onAuthApiLoad});
+    gapi.load('auth');
+    gapi.load('client', {'callback': onClientLoaded});
     gapi.load('picker', {'callback': onPickerApiLoad});
+  }
+
+  function onClientLoaded(){
+    gapi.client.load('drive', 'v2', onAuthApiLoad);
   }
 
   function onAuthApiLoad() {
@@ -163,6 +168,20 @@
     if (data.action == google.picker.Action.PICKED) {
       console.log(data);
       data.docs.forEach(function(doc) {
+
+        var resource = {
+          'id': "anyoneWithLink",
+          'type': 'anyone',
+          'role': 'reader'
+        };
+
+        gapi.client.drive.permissions.insert({
+          'fileId': doc.id,
+          'resource': resource
+        }).execute(function(data) {
+          console.log(data)
+        });
+
         $.ajax({
           type: 'POST',
           dataType: 'json',
@@ -180,14 +199,23 @@
       });
       setTimeout(function() {
         window.location.reload();
-      }, 500*data.docs.length)
+      }, 1000*data.docs.length)
     }
   }
 
   $('.btn').click(function(e) {
     e.preventDefault();
     var project = $(this).attr('data-id');
+    var file = $(this).attr('data-f-id');
     if (project) {
+
+      gapi.client.drive.permissions.delete({
+        'fileId': file,
+        'permissionId': 'anyone'
+      }).execute(function(data) {
+        console.log(data);
+      });
+
       $.ajax({
           type: 'DELETE',
           dataType: 'json',
@@ -203,3 +231,4 @@
   });
 </script>
 <script type="text/javascript" src="https://apis.google.com/js/api.js?onload=loadPicker"></script>
+<script type="text/javascript" src="https://apis.google.com/js/client.js"></script>
