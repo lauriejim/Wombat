@@ -80,6 +80,24 @@ module.exports = {
       });
   },
 
+  stop: function(req, res) {
+    Project.update(req.param('project'), {
+      open: false
+    })
+      .exec(function(err, project) {
+        res.json({});
+      });
+  },
+
+  finish: function(req, res) {
+    Project.update(req.param('project'), {
+      audit: 'close'
+    })
+      .exec(function(err, project) {
+        res.json({});
+      });
+  },
+
   audits: function(req, res) {
     Project.find({
       where: {

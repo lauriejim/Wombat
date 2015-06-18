@@ -56,6 +56,23 @@
             <span class="label label-info">Audit en cours</span>
           <% } if (project.open) { %>
             <span class="label label-info">Projet ouvert à candidature</span>
+            <button id="stop" class="btn btn-warning">Stop</button>
+            <script>
+              $('#stop').on('click', function(e) {
+                e.preventDefault();
+                $.ajax({
+                  type: 'POST',
+                  dataType: 'json',
+                  url: "/stop",
+                  headers: {"X-HTTP-Method-Override": "POST"},
+                  data:{
+                    project: <%= project.id %>
+                  }
+                }).done(function(data) {
+                  window.location.reload();
+                });
+              });
+            </script>
           <% } %>
           <% if (project.audit !== 'open' && !project.open && project.needs.length > 0) { %>
             <button id="start" class="btn btn-success">Lancer l'annonce</button>

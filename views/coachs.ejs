@@ -84,6 +84,7 @@
                             <a href="#" class="hashtags m-b-5"> #<%= demandes[i].type %> </a>
                           </div>
                         </div>
+                        <% if (demandes[i].type !== 'audit') { %>
                         <div class="clearfix"></div>
                         <div class="col-md-12">
                             <p> <%= demandes[i].comment %> </p>
@@ -95,6 +96,7 @@
                             <b>During:</b> <%= demandes[i].weeks %> weeks<br><br>
                             <b>Total:</b> <% var total = price*demandes[i].hours*demandes[i].weeks %><%= total.toFixed(2) %> euros</p>
                         </div>
+                        <% } %>
                         <div class="clearfix"></div>
                         <div class="p-l-15 p-t-10 p-r-20">
                             <button type="button" class="btn btn-success btn-cons" data-id="<%= demandes[i].project.id %>" data-coach="<%= demandes[i].coach.id %>" data-type="<%= demandes[i].type %>" data-total="<%= total %>">Valide</button>
@@ -147,11 +149,36 @@
       var type = $(this).attr('data-type');
       var total = $(this).attr('data-total');
 
-      var handler = StripeCheckout.configure({
-        key: 'pk_test_K8Ipt5hlOkL0j2vqmzUK73EL',
-        image: '/images/stripeLogo.png',
-        token: function(token) {
-          $.ajax({
+      if (type !== 'audit') {
+        var handler = StripeCheckout.configure({
+          key: 'pk_test_K8Ipt5hlOkL0j2vqmzUK73EL',
+          image: '/images/stripeLogo.png',
+          token: function(token) {
+            $.ajax({
+              type: 'POST',
+              dataType: 'json',
+              url: "/user/coach",
+              headers: {"X-HTTP-Method-Override": "POST"},
+              data: {
+                project: project,
+                coach: coach,
+                type: type
+              }
+            })
+            .done(function(data) {
+              window.location.reload();
+            });
+          }
+        });
+
+        handler.open({
+          name: 'Wombat',
+          description: '',
+          currency: "eur",
+          amount: parseFloat(total).toFixed(2) * 100
+        });
+      } else {
+        $.ajax({
             type: 'POST',
             dataType: 'json',
             url: "/user/coach",
@@ -165,16 +192,7 @@
           .done(function(data) {
             window.location.reload();
           });
-        }
-      });
-
-      handler.open({
-        name: 'Wombat',
-        description: '',
-        currency: "eur",
-        amount: parseFloat(total).toFixed(2) * 100
-      });
-      e.preventDefault();
+      }
 
 
     });

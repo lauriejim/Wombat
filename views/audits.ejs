@@ -17,7 +17,7 @@
         <% for(var i=0; i<projects.length; i++) {
 
           var demande = false; for(var k=0; k<projects[i].demandes.length; k++) {
-          if (projects[i].demandes[k].validated && projects[i].demandes[k].type === "audit") {
+          if (projects[i].demandes[k].validated && projects[i].demandes[k].type === "audit" && projects[i].demandes[k].coach === req.session.user.id) {
               demande = true;
             }
           }
@@ -53,6 +53,7 @@
                       <div class="row">
                         <div class="col-md-12">
                           <a href="/project/<%= projects[i].id %>" class="btn btn-success">Project access</a>
+                          <button class="btn btn-warning btnActionFinish" data-id="<%= projects[i].id %>" >Finish</button>
                         </div>
                       </div>
                     </div>
@@ -110,7 +111,7 @@
                         } %>
                         <div class="p-l-15 p-t-10 p-r-20 ">
                           <div class="post p-t-10 p-b-10">
-                            <button type="button" class="btn btnAction<% if (demande) { %>btn-success<% } else { %>btn-info<% } %> btn-cons" data-id="<%= projects[i].id %>"><% if (demande) { %>Thx to help this team<% } else { %>Help this team<% } %></button>
+                            <button type="button" class="btn btnAction <% if (demande) { %>btn-success<% } else { %>btn-info<% } %> btn-cons" data-id="<%= projects[i].id %>"><% if (demande) { %>Thx to help this team<% } else { %>Help this team<% } %></button>
                           </div>
                         </div>
                       </div>
@@ -128,6 +129,21 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
+    $('.btnActionFinish').click(function(e) {
+      var project = $(this).attr('data-id');
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: "/finish",
+        headers: {"X-HTTP-Method-Override": "PUT"},
+        data: {
+          project: project
+        }
+      }).done(function() {
+        window.location.reload();
+      });
+    });
+
     $('.btnAction').click(function(e) {
       e.preventDefault();
       var project = $(this).attr('data-id');

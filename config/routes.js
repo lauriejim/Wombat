@@ -57,6 +57,8 @@ module.exports.routes = {
 
   'POST /audit': 'ProjectController.audit',
   'POST /start': 'ProjectController.start',
+  'POST /stop': 'ProjectController.stop',
+  'PUT /finish': 'ProjectController.finish',
 
   'PUT /project/:id': 'ProjectController.update',
   'POST /user/demande': 'UserController.demande',

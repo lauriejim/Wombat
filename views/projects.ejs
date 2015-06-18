@@ -73,7 +73,7 @@
 
         <% var coach = false;
         for(var l=0; l<projects[i].demandes.length; l++) {
-          if (projects[i].demandes[l].coach === req.session.user.id && projects[i].demandes[l].validated) coach = true;
+          if (projects[i].demandes[l].coach === req.session.user.id && projects[i].demandes[l].validated && projects[i].demandes[l].type !== 'audit') coach = true;
         }
 
         var help = false;
@@ -86,9 +86,8 @@
             }
 
           }
-        }
-
-        if (!coach && help && projects[i].open) {%>
+        }%>
+        <%if (!coach && help && projects[i].open) {%>
 
         <!-- BEGIN BLOG POST WITH IMAGE -->
         <div class="col-md-4">
