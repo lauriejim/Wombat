@@ -33,6 +33,7 @@
                           <tr>
                             <th style="width:9%">Type</th>
                             <th style="width:22%">Name</th>
+                            <th style="width:22%">Date</th>
                             <th style="width:6%">actions</th>
                           </tr>
                         </thead>
@@ -43,7 +44,14 @@
                             <td class="v-align-middle"><img src="<%= docs[i].picto %>"/></td>
                             <td class="v-align-middle"><span class="muted"><a href="<%= docs[i].link %>" target="_blank"><%= docs[i].name %></a></span>
                             </td>
-                            <td><span><button class="btn btn-danger" data-id="<%= docs[i].id %>" data-f-id="<%= docs[i].f_id %>">DELETE</button></span>
+                            <td>
+                              <%= docs[i].createdAt %>
+                            </td>
+                            <td>
+                            <% if (req.session.user.rank === 'coach') { %>
+                              <button class="btn btn-danger btnAction" data-id="<%= docs[i].id %>" data-f-id="<%= docs[i].f_id %>">DELETE</button>
+                              <% } %>
+                              <a href="<%= docs[i].link %>" class="btn btn-success" target="_blank">SHOW</a>
                             </td>
                           </tr>
                           <% } } %>
@@ -64,6 +72,7 @@
                           <tr>
                             <th style="width:9%">Type</th>
                             <th style="width:22%">Name</th>
+                            <th style="width:22%">Date</th>
                             <th style="width:6%">actions</th>
                           </tr>
                         </thead>
@@ -74,7 +83,14 @@
                             <td class="v-align-middle"><img src="<%= docs[i].picto %>"/></td>
                             <td class="v-align-middle"><span class="muted"><a href="<%= docs[i].link %>" target="_blank"><%= docs[i].name %></a></span>
                             </td>
-                            <td><span><button class="btn btn-danger" data-id="<%= docs[i].id %>" data-f-id="<%= docs[i].f_id %>">DELETE</button></span>
+                            <td>
+                              <%= docs[i].createdAt %>
+                            </td>
+                            <td>
+                            <% if (req.session.user.rank === 'manager') { %>
+                              <button class="btn btn-danger btnAction" data-id="<%= docs[i].id %>" data-f-id="<%= docs[i].f_id %>">DELETE</button>
+                              <% } %>
+                              <a href="<%= docs[i].link %>" class="btn btn-success" target="_blank">SHOW</a>
                             </td>
                           </tr>
                           <% } } %>
@@ -203,7 +219,7 @@
     }
   }
 
-  $('.btn').click(function(e) {
+  $('.btnAction').click(function(e) {
     e.preventDefault();
     var project = $(this).attr('data-id');
     var file = $(this).attr('data-f-id');

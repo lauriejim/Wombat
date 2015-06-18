@@ -22,6 +22,8 @@
           if (projects[i].demandes[l].coach === req.session.user.id && projects[i].demandes[l].validated) {
             coach = true;
             type = projects[i].demandes[l].type;
+
+            if (type === 'audit') coach = false;
           }
         }
 
@@ -51,7 +53,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-12">
-                          <button class="btn btn-success"><a href="/projet/<%= projects[i].id %>">Project access</a></button>
+                          <a href="/projet/<%= projects[i].id %>" class="btn btn-success">Project access</a>
                         </div>
                       </div>
                     </div>
