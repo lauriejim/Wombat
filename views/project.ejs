@@ -105,7 +105,7 @@
         </div>
         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
           <div class="col-md-12">
-            <p>Dans quelle domaine pensez-vous avoir besoin d'aide ?</p>
+            <p>Dans quel(s) domaine(s) pensez-vous avoir besoin d'aide ?</p>
             <br>
             <select id="multi" style="width:100%" multiple>
               <option value="UI">UI</option>
@@ -145,10 +145,10 @@ $(document).ready(function() {
         if (!newNeeds[need]) newNeeds[need] = {need: need, content: ''};
         if (tabs.length === 1) {
           $('#tab-01').append('<li class="active" id="tab_' + need + '_link"><a href="#tab_' + need + '">' + need + '</a></li>');
-          $('#tab-01-content').append('<div class="tab-pane active" id="tab_' + need + '"><div class="row column-seperation"><div class="col-md-12"><textarea name="tab_' + need + '_form" id="tab_' + need + '_form" rows="10" type="text" class="form-control" placeholder="Write your ' + need + ' needs">' + newNeeds[need].content + '</textarea></div></div></div>');
+          $('#tab-01-content').append('<div class="tab-pane active" id="tab_' + need + '"><div class="row column-seperation"><div class="col-md-12"><textarea name="tab_' + need + '_form" id="tab_' + need + '_form" rows="10" type="text" class="form-control" placeholder="Donnez plus de détails sur ce domaine">' + newNeeds[need].content + '</textarea></div></div></div>');
         } else {
           $('#tab-01').append('<li id="tab_' + need + '_link"><a href="#tab_' + need + '">' + need + '</a></li>');
-          $('#tab-01-content').append('<div class="tab-pane" id="tab_' + need + '"><div class="row column-seperation"><div class="col-md-12"><textarea name="tab_' + need + '_form" id="tab_' + need + '_form" rows="10" type="text" class="form-control" placeholder="Write your ' + need + ' needs">' + newNeeds[need].content + '</textarea></div></div></div>');
+          $('#tab-01-content').append('<div class="tab-pane" id="tab_' + need + '"><div class="row column-seperation"><div class="col-md-12"><textarea name="tab_' + need + '_form" id="tab_' + need + '_form" rows="10" type="text" class="form-control" placeholder="Donnez plus de détails sur ce domaine">' + newNeeds[need].content + '</textarea></div></div></div>');
         }
         $('#tab-01 a').click(function(e) {
           e.preventDefault();

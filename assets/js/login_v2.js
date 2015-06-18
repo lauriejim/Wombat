@@ -126,10 +126,10 @@ $(document).ready(function() {
         tabs.push(need);
         if (tabs.length === 1) {
           $('#tab-01').append('<li class="active" id="tab_' + need + '_link"><a href="#tab_' + need + '">' + need + '</a></li>');
-          $('#tab-01-content').append('<div class="tab-pane active" id="tab_' + need + '"><div class="row column-seperation"><div class="col-md-12"><textarea name="tab_' + need + '_form" id="tab_' + need + '_form" rows="10" type="text" class="form-control" placeholder="Write your ' + need + ' needs"></textarea></div></div></div>');
+          $('#tab-01-content').append('<div class="tab-pane active" id="tab_' + need + '"><div class="row column-seperation"><div class="col-md-12"><textarea name="tab_' + need + '_form" id="tab_' + need + '_form" rows="10" type="text" class="form-control" placeholder="Donnez plus de détails sur ce domaine"></textarea></div></div></div>');
         } else {
           $('#tab-01').append('<li id="tab_' + need + '_link"><a href="#tab_' + need + '">' + need + '</a></li>');
-          $('#tab-01-content').append('<div class="tab-pane" id="tab_' + need + '"><div class="row column-seperation"><div class="col-md-12"><textarea name="tab_' + need + '_form" id="tab_' + need + '_form" rows="10" type="text" class="form-control" placeholder="Write your ' + need + ' needs"></textarea></div></div></div>');
+          $('#tab-01-content').append('<div class="tab-pane" id="tab_' + need + '"><div class="row column-seperation"><div class="col-md-12"><textarea name="tab_' + need + '_form" id="tab_' + need + '_form" rows="10" type="text" class="form-control" placeholder="Donnez plus de détails sur ce domaine"></textarea></div></div></div>');
         }
         $('#tab-01 a').click(function(e) {
           e.preventDefault();
