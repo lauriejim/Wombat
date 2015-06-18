@@ -1,3 +1,3 @@
 # suw
 
-a [Sails](http://suw-wombat.herokuapp.com/) Link to Wombat
+[Link to Wombat](http://suw-wombat.herokuapp.com/)
