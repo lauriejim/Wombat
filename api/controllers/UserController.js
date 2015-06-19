@@ -86,6 +86,12 @@ module.exports = {
         req.session.user = user;
         req.session.authenticated = true;
 
+        var message = {
+          type: 'success',
+          message: 'Félicitation, votre compte à été créé.'
+        };
+        sails.controllers.app.displayFlashMessage(req, message);
+
         res.json({});
       });
   },
@@ -136,6 +142,12 @@ module.exports = {
 
               });
             });
+            var message = {
+              type: 'success',
+              message: 'Félicitation, votre compte à été créé.'
+            };
+            sails.controllers.app.displayFlashMessage(req, message);
+
             res.json({});
           });
       })

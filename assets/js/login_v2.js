@@ -87,7 +87,7 @@ $(document).ready(function() {
       password: user.password
     })
       .done(function(data) {
-        if (!data.err) window.location.replace("/");
+        if (!data.err) window.location.replace("/dashboard");
         else window.location.reload();
       });
   });
@@ -113,7 +113,7 @@ $(document).ready(function() {
       entreprise: user.entreprise
     })
       .done(function(data) {
-        if (!data.err) window.location.replace("/");
+        if (!data.err) window.location.replace("/dashboard");
         else window.location.reload();
       });
   });

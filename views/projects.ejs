@@ -10,8 +10,9 @@
   </div>
   <div class="clearfix"></div>
   <div class="content">
-  <div class="page-title">
+  <div class="page-title col-md-12">
     <h3>Vous travaillez avec : </h3>
+    <p class="col-md-5">Vous trouverez ici les projets aux quels vous participez, c’est à dire vous avez été choisi par l’entrepreneur pour s’occuper de son projet</p><br>
   </div>
        <div class="row">
         <% for(var i=0; i<projects.length; i++) {%>
@@ -41,7 +42,7 @@
               </div>
                           <div class="comment">
                             <div class="user-name text-black bold"><%= projects[i].manager.firstname %> <span class="semi-bold"><%= projects[i].manager.lastname %></span> </div>
-                            <div class="preview-wrapper">@ Project name </div>
+                            <div class="preview-wrapper"><%= projects[i].manager.email %> </div>
                           </div>
                           <div class="clearfix"></div>
                         </div>
@@ -64,9 +65,10 @@
         <% } %>
         <% } %>
       </div>
-
-  <div class="page-title">
+<br>
+  <div class="page-title col-md-12">
     <h3>Proposez votre aide à : </h3>
+    <p class="col-md-5">Vous trouverez ici les projets aux quels vous postulez, c’est à dire vous n’avez pas encore été choisi par l’entrepreneur pour s’occuper de son projet.</p><br>
   </div>
       <div class="row">
         <% for(var i=0; i<projects.length; i++) {%>

@@ -11,11 +11,15 @@
   <div class="clearfix"></div>
   <div class="content">
   <div class="page-title">
+    <i class="fa fa-home"></i>
     <h3>Bienvenue sur Wombat</h3>
   </div>
+  <div class="row">
+  <div class="col-md-6">
+
     <% if (req.session.user.rank === 'manager') { %>
-      <p>Sur la page Projet vous pouvez à tous moment éditer vos besoins et le pich de votre projet.
-      <br>C'est aussi sur cette page que vous accederais à l'espace de votre projet.<br>
+      <p>Sur la page Projet vous pouvez à tous moment éditer vos besoins et le pich de votre projet.<br>
+      <br>C'est aussi sur cette page que vous accederais à l'espace de votre projet.<br><br>
       Il est possible de demander un audit, vous trouverez sur la page coachs les demandes qui sont faites par les experts.
       Il est également possible d'activer votre annonce afin que le projetsoit visible par les experts. Leurs demandes sont également affichées dans la page Mentors.</p>
 
@@ -26,6 +30,9 @@
       Sur la page Projets vous trouverez l'ensemble des projets sur les quelle vous pouvez proposer votre aide aissi que les projet qur les quelles vous travaillé.<br><br>
       Sur la page Audits, vous trouverez les start-up qui on besoins d'un audit qui vous sera rémunéré 360e.</p>
     <% } %>
+  </div>
+
+  </div>
   </div>
 </div>
 <!-- END PAGE CONTAINER
