@@ -10,13 +10,10 @@ module.exports = {
     res.view('homepage');
   },
 
+
   auth: function(req, res) {
     if (req.session.authenticated) {
-      if (req.session.user.rank === 'manager') {
-        res.redirect('/dashboard');
-      } else {
-        res.redirect('/projects');
-      }
+      res.redirect('dashboard');
     } else {
       res.view('auth', {
         layout: false
