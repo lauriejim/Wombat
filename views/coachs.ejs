@@ -30,8 +30,8 @@
               </div>
                           <div class="comment">
                             <div class="user-name text-black bold"><%= demandes[i].coach.firstname %> <span class="semi-bold"><%= demandes[i].coach.lastname %></span> </div>
-                            <div class="preview-wrapper">@ <%= demandes[i].coach.entreprise %> </div>
-                            <div class="preview-wrapper">@ <%= demandes[i].coach.email %> </div>
+                            <div class="preview-wrapper">@<%= demandes[i].coach.entreprise %> </div>
+                            <div class="preview-wrapper"><%= demandes[i].coach.email %> </div>
                           </div>
                           <div class="clearfix"></div>
                         </div>
@@ -39,10 +39,6 @@
                           <div class="post p-t-10 p-b-10">
                             <a href="#" class="hashtags m-b-5"> #<%= demandes[i].type %> </a>
                           </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="col-md-12">
-                            <p> <%= demandes[i].comment %> </p>
                         </div>
                       </div>
                     </div>
