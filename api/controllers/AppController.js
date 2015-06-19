@@ -11,9 +11,17 @@ module.exports = {
   },
 
   auth: function(req, res) {
-    res.view('auth', {
-      layout: false
-    });
+    if (req.session.authenticated) {
+      if (req.session.user.rank === 'manager') {
+        res.redirect('/dashboard');
+      } else {
+        res.redirect('/projects');
+      }
+    } else {
+      res.view('auth', {
+        layout: false
+      });
+    }
   },
 
   /**

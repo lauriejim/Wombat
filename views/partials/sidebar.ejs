@@ -15,6 +15,7 @@
   </ul>
   <% } if (req.session.user.rank === 'coach') { %>
   <ul>
+    <li class="start"> <a href="/dashboard"> <i class="icon-custom-home"></i> <span class="title">Dashboard</span> </a></li>
     <li class="start"> <a href="/coach"> <i class="fa fa-user"></i> <span class="title">Profil</span> </a></li>
     <li class="start"> <a href="/projects"> <i class="fa fa-list"></i> <span class="title">Projets</span> </a></li>
     <li class="start"> <a href="/audits"> <i class="fa fa-list"></i> <span class="title">Audits</span> </a></li>
