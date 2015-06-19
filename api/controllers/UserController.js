@@ -23,7 +23,7 @@ module.exports = {
         if (!match) {
           var message = {
             type: 'warning',
-            message: 'Email or password is bad'
+            message: 'E-mail ou mot de passe erroné'
           };
           sails.controllers.app.displayFlashMessage(req, message);
           res.redirect('/');
@@ -37,7 +37,7 @@ module.exports = {
       .catch(function(err) {
         var message = {
           type: 'warning',
-          message: 'Email or password is bad'
+          message: 'E-mail ou mot de passe erroné'
         };
         sails.controllers.app.displayFlashMessage(req, message);
 
@@ -75,7 +75,7 @@ module.exports = {
         if (err) {
           var message = {
             type: 'warning',
-            message: 'Email already exist'
+            message: 'Cette e-mail existe déjà'
           };
           sails.controllers.app.displayFlashMessage(req, message);
           return res.json({
@@ -110,7 +110,7 @@ module.exports = {
         if (err) {
           var message = {
             type: 'warning',
-            message: 'Email already exist'
+            message: 'Cette e-mail existe déjà'
           };
           sails.controllers.app.displayFlashMessage(req, message);
           return res.json({
@@ -232,7 +232,7 @@ module.exports = {
         req.session.user = user[0];
         var message = {
           type: 'success',
-          message: 'Profil updated'
+          message: 'Profil mis à jour'
         };
         sails.controllers.app.displayFlashMessage(req, message);
         res.redirect('/coach');
@@ -250,7 +250,7 @@ module.exports = {
         req.session.user = user[0];
         var message = {
           type: 'success',
-          message: 'Profil updated'
+          message: 'Profil mis à jour'
         };
         sails.controllers.app.displayFlashMessage(req, message);
         res.redirect('/manager');
@@ -268,7 +268,7 @@ module.exports = {
         req.session.user = user[0];
         var message = {
           type: 'success',
-          message: 'Compte updated'
+          message: 'Compte bancaire mis à jour'
         };
         sails.controllers.app.displayFlashMessage(req, message);
         res.redirect('/credit');

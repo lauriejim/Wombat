@@ -136,7 +136,7 @@ module.exports = {
 
         var message = {
           type: 'success',
-          message: 'Project updated'
+          message: 'Projet mis à jour'
         };
         sails.controllers.app.displayFlashMessage(req, message);
 
