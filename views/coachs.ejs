@@ -15,8 +15,8 @@
     <h3>Vos mentors.</h3>
   </div>
        <div class="row">
-        <% for(var i=0; i<demandes.length; i++) {
-          if (demandes[i].validated) {%>
+        <% var one = false; for(var i=0; i<demandes.length; i++) {
+          if (demandes[i].validated) { one = true; %>
 
         <!-- BEGIN BLOG POST WITH IMAGE -->
                <div class="col-md-4">
@@ -52,18 +52,21 @@
         <!-- BEGIN BLOG POST WITH IMAGE -->
         <% } %>
         <% } %>
+        <% if (!one) { %>
+          Aucun mentor ne travaille avec vous.
+        <% } %><br><br>
       </div>
   <div class="page-title">
     <h3>Ils vous proposent leur aide.</h3>
   </div>
              <div class="row">
-        <% for(var i=0; i<demandes.length; i++) {
+        <% var one = false; for(var i=0; i<demandes.length; i++) {
           var already = false;
           for(var j=0; j<demandes.length; j++) {
             if (demandes[j].id !== demandes[i].id && demandes[j].type === demandes[i].type && demandes[j].validated) already = true
           }
 
-          if (!demandes[i].validated && !already) {%>
+          if (!demandes[i].validated && !already) { one = true;%>
 
         <!-- BEGIN BLOG POST WITH IMAGE -->
                <div class="col-md-4">
@@ -110,6 +113,9 @@
                 </div>
         <!-- BEGIN BLOG POST WITH IMAGE -->
         <% } %>
+        <% } %>
+        <% if (!one) { %>
+          Aucun mentor vous propose de travailler avec vous.
         <% } %>
       </div>
   </div>

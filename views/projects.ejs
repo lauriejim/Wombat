@@ -12,10 +12,10 @@
   <div class="content">
   <div class="page-title col-md-12">
     <h3>Vous travaillez avec : </h3>
-    <p class="col-md-5">Vous trouverez ici les projets aux quels vous participez, c’est à dire vous avez été choisi par l’entrepreneur pour s’occuper de son projet</p><br>
+    <p class="col-md-5">Vous trouverez ici les projets auxquels vous participez, c’est-à-dire, vous avez été choisi par l’entrepreneur pour s’occuper de son projet.</p><br>
   </div>
        <div class="row">
-        <% for(var i=0; i<projects.length; i++) {%>
+        <% var one = false; for(var i=0; i<projects.length; i++) {%>
 
         <% var coach = false;
         var type = false;
@@ -28,7 +28,7 @@
           }
         }
 
-        if (coach) {%>
+        if (coach) { one = true;%>
 
         <!-- BEGIN BLOG POST WITH IMAGE -->
                <div class="col-md-4">
@@ -64,14 +64,17 @@
         <!-- BEGIN BLOG POST WITH IMAGE -->
         <% } %>
         <% } %>
+        <% if (!one) { %>
+          Aucune start-up ne travaille avec vous.
+        <% } %>
       </div>
 <br>
   <div class="page-title col-md-12">
     <h3>Proposez votre aide à : </h3>
-    <p class="col-md-5">Vous trouverez ici les projets aux quels vous postulez, c’est à dire vous n’avez pas encore été choisi par l’entrepreneur pour s’occuper de son projet.</p><br>
+    <p class="col-md-5">Vous trouverez ici les projets auxquels vous postulez, c’est-à-dire, vous n’avez pas encore été choisi par l’entrepreneur pour s’occuper de son projet.</p><br>
   </div>
       <div class="row">
-        <% for(var i=0; i<projects.length; i++) {%>
+        <% var one = false; for(var i=0; i<projects.length; i++) {%>
 
         <% var coach = false;
         for(var l=0; l<projects[i].demandes.length; l++) {
@@ -89,7 +92,7 @@
 
           }
         }%>
-        <%if (!coach && help && projects[i].open) {%>
+        <%if (!coach && help && projects[i].open) { one = true; %>
 
         <!-- BEGIN BLOG POST WITH IMAGE -->
         <div class="col-md-4">
@@ -176,7 +179,10 @@
                 </div>
                 </div>
         <!-- BEGIN BLOG POST WITH IMAGE -->
-          <%}%>
+          <% } %>
+        <% } %>
+        <% if (!one) { %>
+          Aucune start-up n'a besoin d'aide dans vos domaines d'expertises, vérifier vos qualifications dans la page "Profil".
         <% } %>
       </div>
   </div>

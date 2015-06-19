@@ -18,7 +18,7 @@ Du fait de la variété des domaines à couvrir et des missions à conduire, l�
     <h3>Vous réalisez l'audit de : </h3>
   </div>
        <div class="row">
-        <% for(var i=0; i<projects.length; i++) {
+        <% var one = false; for(var i=0; i<projects.length; i++) {
 
           var demande = false; for(var k=0; k<projects[i].demandes.length; k++) {
           if (projects[i].demandes[k].validated && projects[i].demandes[k].type === "audit" && projects[i].demandes[k].coach === req.session.user.id) {
@@ -26,7 +26,7 @@ Du fait de la variété des domaines à couvrir et des missions à conduire, l�
             }
           }
 
-        if (projects[i].audit === 'open' && demande) {%>
+        if (projects[i].audit === 'open' && demande) { one = true;%>
 
         <!-- BEGIN BLOG POST WITH IMAGE -->
                <div class="col-md-4">
@@ -67,12 +67,15 @@ Du fait de la variété des domaines à couvrir et des missions à conduire, l�
         <!-- BEGIN BLOG POST WITH IMAGE -->
           <% } %>
         <% } %>
+        <% if (!one) { %>
+          Aucune start-up
+        <% } %><br><br>
       </div>
   <div class="page-title">
     <h3>Proposez-vous pour l'audit de : </h3>
   </div>
        <div class="row">
-        <% for(var i=0; i<projects.length; i++) {
+        <% var one = false; for(var i=0; i<projects.length; i++) {
 
           var demande = false; for(var k=0; k<projects[i].demandes.length; k++) {
           if (projects[i].demandes[k].validated && projects[i].demandes[k].type === "audit") {
@@ -80,7 +83,7 @@ Du fait de la variété des domaines à couvrir et des missions à conduire, l�
             }
           }
 
-        if (projects[i].audit === 'open' && !demande) {%>
+        if (projects[i].audit === 'open' && !demande) { one = true;%>
 
         <!-- BEGIN BLOG POST WITH IMAGE -->
                <div class="col-md-4">
@@ -125,6 +128,9 @@ Du fait de la variété des domaines à couvrir et des missions à conduire, l�
                 </div>
         <!-- BEGIN BLOG POST WITH IMAGE -->
           <% } %>
+        <% } %>
+        <% if (!one) { %>
+          Aucune start-up n'a besoin d'un audit.
         <% } %>
       </div>
   </div>

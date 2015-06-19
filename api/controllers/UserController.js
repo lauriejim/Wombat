@@ -88,7 +88,7 @@ module.exports = {
 
         var message = {
           type: 'success',
-          message: 'Félicitation, votre compte à été créé.'
+          message: 'Félicitation, votre compte a été créé.'
         };
         sails.controllers.app.displayFlashMessage(req, message);
 
@@ -144,7 +144,7 @@ module.exports = {
             });
             var message = {
               type: 'success',
-              message: 'Félicitation, votre compte à été créé.'
+              message: 'Félicitation, votre compte a été créé.'
             };
             sails.controllers.app.displayFlashMessage(req, message);
 
