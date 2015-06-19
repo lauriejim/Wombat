@@ -39,7 +39,6 @@ module.exports.routes = {
   'POST /register': 'UserController.register',
   'POST /registerCoach': 'UserController.registerCoach',
 
-  'GET /dashboard': 'AppController.dashboard',
   'GET /project': 'ProjectController.show',
   'GET /coachs': 'ProjectController.coachs',
   'GET /manager': 'UserController.manager',

@@ -32,7 +32,7 @@ module.exports = {
         req.session.user = user;
         req.session.authenticated = true;
 
-        res.redirect('/dashboard');
+        res.redirect('/');
       })
       .catch(function(err) {
         var message = {

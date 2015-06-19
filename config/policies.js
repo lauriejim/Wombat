@@ -26,17 +26,15 @@ module.exports.policies = {
    *                                                                          *
    ***************************************************************************/
 
-  '*': ['message'],
+  '*': ['sessionAuth', 'message'],
   AppController: {
-    dashboard: ['sessionAuth', 'message']
+    auth: ['message']
   },
   UserController: {
-    credit: ['sessionAuth', 'message'],
-    manager: ['sessionAuth', 'message'],
-    meCoach: ['sessionAuth', 'message']
-  },
-  ProjectController: ['sessionAuth', 'message']
-
+    login: ['message'],
+    register: ['message'],
+    registerCoach: ['message']
+  }
   /***************************************************************************
    *                                                                          *
    * Here's an example of mapping some policies to run before a controller    *

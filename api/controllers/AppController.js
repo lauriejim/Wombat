@@ -6,14 +6,18 @@
  */
 
 module.exports = {
-  dashboard: function(req, res) {
-    res.view('homepage');
-  },
-
   auth: function(req, res) {
-    res.view('auth', {
-      layout: false
-    });
+    if (req.session.authenticated) {
+      if (req.session.user.rank === 'manager') {
+        res.redirect('/project');
+      } else {
+        res.redirect('/coach');
+      }
+    } else {
+      res.view('auth', {
+        layout: false
+      });
+    }
   },
 
   /**
