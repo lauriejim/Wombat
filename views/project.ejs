@@ -212,7 +212,7 @@ $(document).ready(function() {
 
   $("#multi").select2();
 
-  var needs = JSON.parse('<%-JSON.stringify(project.needs)%>');
+  var needs = JSON.parse('<%-JSON.stringify(project.needs).replace("\'", "\\\'")%>');
   var newNeeds = {};
   var selected = [];
 
